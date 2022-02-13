@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "CommonJS",
+        "moduleResolution": "Node",
+        "baseUrl": ".",
+        "esModuleInterop": true,
+        "strict": true,
+        "paths": {
+           "@models/*": ["./models/*"]
+        }
+    },
+    "exclude" : [ 
+        "./build", 
+        "./node_modules",
+        "./test"
+    ] 
+}
