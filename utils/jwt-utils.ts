@@ -20,12 +20,12 @@ export const cookieProps = Object.freeze({
     key: 'jwt',
     secret: process.env.COOKIE_SECRET || randomString.generate(100),
     options: {
-        httpOnly: true,
+        // httpOnly: true,
         // signed: true,
-        path: (process.env.COOKIE_PATH || '/'),
+        // path: (process.env.COOKIE_PATH || '/'),
         maxAge: Number(process.env.COOKIE_EXP) || 3600*24,
-        domain: (process.env.COOKIE_DOMAIN ||'/'),
-        secure: (process.env.SECURE_COOKIE === 'true'),
+        // domain: (process.env.COOKIE_DOMAIN ||'/'),
+        // secure: (process.env.SECURE_COOKIE === 'true'),
     },
 });
 
