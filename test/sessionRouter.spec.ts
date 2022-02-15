@@ -30,10 +30,8 @@ describe('sessionRouter', () => {
                 send(user).
                 expect(200).
                 expect(user).
-                end((err, res) => {
-                    if (err) done(err)
-                    const cookies = res.headers['set-cookie'][0].split(',').map((item: string) => item.split(';')[0])
-                    jwt = (cookies[0] as String).split('=')[1]
+                end((err, _res) => {
+                    if (err) return done(err)
                     done()
                 })
         })
