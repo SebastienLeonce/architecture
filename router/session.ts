@@ -18,3 +18,5 @@ router.delete('/', async (req, res) => {
         token
     });
 });
+
+export default router;
