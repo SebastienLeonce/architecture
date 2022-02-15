@@ -1,23 +1,66 @@
 import supertest from 'supertest'
 import app from '../index'
 
+import {UserModel, User } from '@models/User'
+import { Types } from 'mongoose';
+
 describe('userRouter', () => {
+    const user = {
+        username: 'test',
+        password: 'test' 
+    }
+    let _id : Types.ObjectId | String = '';
+
+    const agent = supertest.agent(app)
+
+    
+    beforeEach(async () => {
+        const doc = new UserModel<User>(user); 
+
+        await doc.save();
+        _id = doc._id;
+        
+        await agent.
+            post('/api/session').
+            send(user)
+    })
+
+    afterEach(async () => {
+        await UserModel.deleteOne({ _id })
+    })
 
     describe('GET /user', () => {
         it('Should Work', done => {
-            supertest(app).
+            agent.
                 get('/api/user').
                 expect(200).
-                expect([], done)
+                expect([{
+                    _id: _id.toString(),
+                    username: user.username
+
+                }], done)
         })
     });
 
     describe('GET /user/:id', () => {
         it('Should Not Work', done => {
-            supertest(app).
+            agent.
                 get('/api/user/ezea').
                 expect(400).
                 expect('"Invalid Data"', done)
+        })
+    });
+
+    describe('GET /user/:id', () => {
+        it('Should Not Work', done => {
+            agent.
+                delete('/api/session').
+                end((err, _res) => {
+                    if (err) return done(err)
+                    agent.
+                        get(`/api/user/ezea`).
+                        expect(500, done)
+                })
         })
     });
 });
