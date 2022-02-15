@@ -10,7 +10,7 @@ describe('sessionRouter', () => {
         password: 'test' 
     }
     let _id : Types.ObjectId | String = '';
-    let jwt = '';
+    const agent = supertest(app)
 
     describe('POST /session', () => {
         beforeEach(async () => {
@@ -25,7 +25,7 @@ describe('sessionRouter', () => {
         })
 
         it('Should Return a JWT', done => {
-            supertest(app).
+            agent.
                 post('/api/session').
                 send(user).
                 expect(200).
@@ -39,10 +39,12 @@ describe('sessionRouter', () => {
         })
 
         it('Shoud Destroy JWT', done => {
-            supertest(app).
-            delete('/api/session').
-            set('Cookie', [`jwt=${jwt}`]).
-            expect(200, done)
+            agent.
+                delete('/api/session').
+                expect(200).
+                end((_err, _res) => {
+                    done()
+                })
         })
     });
 });
