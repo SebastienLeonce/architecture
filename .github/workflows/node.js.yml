@@ -30,8 +30,3 @@ jobs:
     - run: npm run build --if-present
     - name: Run test 🧪
       run: npm test
-    - name: Update code coverage badge 🥇
-      run: node ./node_modules/.bin/update-badge
-    - uses: mikeal/publish-to-github-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
