@@ -3,6 +3,7 @@ import app from '../index'
 
 import {UserModel, User } from '@models/User'
 import { Types } from 'mongoose';
+import { INVALID_PARAMETER_ID_FORMAT_ERROR } from 'types/error/RequestError';
 
 describe('userRouter', () => {
     const user = {
@@ -21,7 +22,7 @@ describe('userRouter', () => {
         _id = doc._id;
         
         await agent.
-            post('/api/session').
+            post('/api/auth/login',).
             send(user)
     })
 
@@ -47,7 +48,7 @@ describe('userRouter', () => {
             agent.
                 get('/api/user/ezea').
                 expect(400).
-                expect('"Invalid Data"', done)
+                expect(INVALID_PARAMETER_ID_FORMAT_ERROR, done)
         })
     });
 
@@ -59,7 +60,7 @@ describe('userRouter', () => {
                     if (err) return done(err)
                     agent.
                         get(`/api/user/ezea`).
-                        expect(500, done)
+                        expect(400, done)
                 })
         })
     });

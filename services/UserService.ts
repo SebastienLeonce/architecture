@@ -1,0 +1,79 @@
+import { UserModel, User } from '@models/User';
+import * as DatabaseError from 'types/error/DatabaseError';
+import * as UserError from 'types/error/UserError';
+import { UserResponse } from 'types/user/UserResponse';
+import { Log } from 'utils/Logger';
+
+
+export async function getAllUser() : Promise<UserResponse[]> {
+    const users = await UserModel.find().select({username: 1})
+                        .catch((err) => {
+                            Log.fatal(err.message);
+                            throw DatabaseError.DB_UNAVAILABLE_ERROR})
+
+    
+    return users.map(xx=>{
+        return <UserResponse>{
+            _id: xx._id.toString(),
+            username: xx.username
+        };
+  });
+}
+
+
+export async function getUserByUsername(username: string) {
+    const user = await UserModel.findOne({username: username})
+                       .catch((err) => {
+                            Log.fatal(err.message);
+                            throw DatabaseError.DB_UNAVAILABLE_ERROR})
+
+    if (!user) throw UserError.USER_NOT_FOUND_ERROR
+
+    return user;
+}
+
+export async function getUserById(id: string) {
+    const user = await UserModel.findOne({_id: id}).select({password: 0})
+                       .catch((err) => {
+                            Log.fatal(err.message);
+                            throw DatabaseError.DB_UNAVAILABLE_ERROR })
+    
+    if (!user) throw UserError.USER_NOT_FOUND_ERROR
+
+    return user;
+}
+
+export async function createUser(username: string, password: string){
+    const user = new UserModel<User>({
+        username,
+        password 
+    });
+
+    await user.save()
+              .catch((error) => { Log.fatal(error)
+                                  throw UserError.USER_ALREADY_EXIST_ERROR})
+
+    const { password:string, __v, ...data} = user.toJSON() 
+
+    return data;
+}
+
+export async function updateUserPassword(id: string, password: string){
+    let user = await UserModel.findByIdAndUpdate(id, { password })
+                                .catch((err) => { 
+                                    Log.fatal(err.message);
+                                    throw DatabaseError.DB_UNAVAILABLE_ERROR })
+
+    if (!user) throw UserError.USER_NOT_FOUND_ERROR
+
+    user = await getUserById(user._id.toString()).catch((err: Error) => {throw err})
+    return user;
+}
+
+export async function deleteUser(id: string){
+    await getUserById(id).catch((error: Error) => {throw error});
+    await UserModel.deleteOne({ _id: id })
+                   .catch((err) => { 
+                        Log.fatal(err.message);
+                        throw DatabaseError.DB_UNAVAILABLE_ERROR })
+}
