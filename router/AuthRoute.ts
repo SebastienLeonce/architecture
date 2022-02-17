@@ -3,7 +3,7 @@ import { cookieProps } from 'utils/jwt-utils';
 import * as AuthService from 'services/AuthService'
 import * as RequestError from 'types/error/RequestError';
 import Error from 'types/error/Error';
-import { whoami } from 'middlewares/isAuthenticated';
+// import { whoami } from 'middlewares/isAuthenticated';
 
 const router = express.Router();
 
@@ -38,9 +38,9 @@ router.delete('/logout', async (req, res) => {
     res.clearCookie(key, options).end()
 });
 
-router.get('/whoami', async (req, res) => {
-    const user = await whoami(req, res)
-    return res.status(200).send(user)
-})
+// router.get('/whoami', async (req, res) => {
+//     const user = await whoami(req, res)
+//     return res.status(200).send(user)
+// })
 
 export default router;
