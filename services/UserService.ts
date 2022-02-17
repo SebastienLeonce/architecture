@@ -1,8 +1,8 @@
 import { UserModel, User } from '@models/User';
-import * as DatabaseError from 'types/error/DatabaseError';
-import * as UserError from 'types/error/UserError';
-import { UserResponse } from 'types/user/UserResponse';
-import { Log } from 'utils/Logger';
+import * as DatabaseError from '@shared/error/DatabaseError';
+import * as UserError from '@shared/error/UserError';
+import { UserResponse } from '@shared/user/UserResponse';
+import { Log } from '@utils/Logger';
 
 
 export async function getAllUser() : Promise<UserResponse[]> {
@@ -40,7 +40,10 @@ export async function getUserById(id: string) {
     
     if (!user) throw UserError.USER_NOT_FOUND_ERROR
 
-    return user;
+    return <UserResponse>{
+        _id: user._id.toString(),
+        username: user.username
+    }
 }
 
 export async function createUser(username: string, password: string){
@@ -66,8 +69,8 @@ export async function updateUserPassword(id: string, password: string){
 
     if (!user) throw UserError.USER_NOT_FOUND_ERROR
 
-    user = await getUserById(user._id.toString()).catch((err: Error) => {throw err})
-    return user;
+    let UserResponse = await getUserById(user._id.toString()).catch((err: Error) => {throw err})
+    return UserResponse;
 }
 
 export async function deleteUser(id: string){

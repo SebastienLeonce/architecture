@@ -3,7 +3,7 @@ import app from '../index'
 
 import {UserModel, User } from '@models/User'
 import { Types } from 'mongoose';
-import { INVALID_PARAMETER_ID_FORMAT_ERROR } from 'types/error/RequestError';
+import { INVALID_PARAMETER_ID_FORMAT_ERROR } from '@shared/error/RequestError';
 
 describe('userRouter', () => {
     const user = {
