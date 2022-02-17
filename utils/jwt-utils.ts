@@ -21,11 +21,11 @@ export const cookieProps = Object.freeze({
     secret: process.env.COOKIE_SECRET || randomString.generate(100),
     options: {
         // httpOnly: true,
-        // signed: true,
+        signed: true,
         // path: (process.env.COOKIE_PATH || '/'),
         maxAge: Number(process.env.COOKIE_EXP) || 3600*24,
-        // domain: (process.env.COOKIE_DOMAIN ||'/'),
-        // secure: (process.env.SECURE_COOKIE === 'true'),
+        // domain: (process.env.COOKIE_DOMAIN ||'http://localhost:3000/'),
+        // secure: false,
     },
 });
 
