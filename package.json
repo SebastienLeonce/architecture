@@ -7,7 +7,7 @@
     "start": "node -r ts-node/register -r tsconfig-paths/register ./build/index.js",
     "build": "tsc --build",
     "dev": "nodemon -r tsconfig-paths/register index.ts",
-    "test": "nyc --reporter html mocha --exit"
+    "test": "nyc --reporter html --reporter json-summary mocha --exit"
   },
   "author": "",
   "license": "ISC",
@@ -35,6 +35,7 @@
     "@types/supertest": "^2.0.11",
     "@types/swagger-jsdoc": "^6.0.1",
     "@types/swagger-ui-express": "^4.1.3",
+    "check-code-coverage": "^1.10.0",
     "mocha": "^9.2.0",
     "nodemon": "^2.0.15",
     "nyc": "^15.1.0",
