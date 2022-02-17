@@ -4,15 +4,18 @@ import app from '../index'
 import { UserModel, User } from '@models/User';
 import { Types } from 'mongoose';
 
-describe('sessionRouter', () => {
+describe('AuthenticationRouter', () => {
     const user = {
         username: 'test',
         password: 'test' 
     }
+    const success = {
+        message: 'Success'
+    }
     let _id : Types.ObjectId | String = '';
     const agent = supertest(app)
 
-    describe('POST /session', () => {
+    describe('POST /auth/login', () => {
         beforeEach(async () => {
             const doc = new UserModel<User>(user); 
 
@@ -24,12 +27,12 @@ describe('sessionRouter', () => {
             await UserModel.deleteOne({ _id })
         })
 
-        it('Should Return a JWT', done => {
+        it('Should put a JWT token on cookie and return success', done => {
             agent.
-                post('/api/session').
+                post('/api/auth/login',).
                 send(user).
-                expect(200).
-                expect(user).
+                expect(201).
+                expect(success).
                 end((err, _res) => {
                     if (err) return done(err)
                     done()
