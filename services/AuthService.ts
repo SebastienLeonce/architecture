@@ -1,12 +1,12 @@
-import jwtUtils from 'utils/jwt-utils';
-import * as AuthError from 'types/error/AuthError'
+import jwtUtils from '@utils/jwt-utils';
+import * as AuthError from '@shared/error/AuthError'
 import * as UserService from './UserService'
+import error from '@shared/error/Error';
 
 export async function login(username : string, password : string) : Promise<string> {
     const user = await UserService.getUserByUsername(username)
-                                  .catch((error: Error) => {throw error})
+                                  .catch((error: error) => {throw error})
 
-    if (!user) throw AuthError.USER_UNKNOWN_ERROR;
     if (password != user.password) throw AuthError.USER_PASSWORD_ERROR
 
     return await jwtUtils.sign({
@@ -17,11 +17,11 @@ export async function login(username : string, password : string) : Promise<stri
 
 export async function register(username : string, password : string) : Promise<string>{
     const userCreated = await UserService.createUser(username, password)
-                                         .catch((error: Error) => {throw error});
+                                         .catch((error: error) => {throw error});
 
     
     return await jwtUtils.sign({
         id: userCreated._id,
         username: userCreated.username,
     });
-}
+} 
