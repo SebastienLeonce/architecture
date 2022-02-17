@@ -2,7 +2,7 @@ import express         from 'express'
 import bodyParser      from 'body-parser'
 import cookieParser    from 'cookie-parser'
 
-import apiRouter       from './router'
+import apiRouter       from './router/Route'
 import db              from './plugins/db';db;
 import swagger         from './plugins/swagger'
 import { cookieProps } from 'utils/jwt-utils';
