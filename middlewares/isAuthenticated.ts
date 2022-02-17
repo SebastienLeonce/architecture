@@ -1,11 +1,11 @@
-import jwtUtils from 'utils/jwt-utils'
+import jwtUtils from '@utils/jwt-utils'
 import { User } from '@models/User'
 import { 
     Request,
     Response,
     NextFunction
 } from 'express'
-import * as MiddlewareError from 'types/error/MiddlewareError'
+import * as MiddlewareError from 'shared/error/MiddlewareError'
 
 export default async (req: Request, res : Response, next: NextFunction) => {
     const jwt = req.signedCookies.jwt
@@ -19,5 +19,4 @@ export default async (req: Request, res : Response, next: NextFunction) => {
         }
     }
     res.status(401).send(MiddlewareError.UNAUTHORIZED_ERROR)
-    next()
 }
