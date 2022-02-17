@@ -7,7 +7,8 @@
     "start": "node -r ts-node/register -r tsconfig-paths/register ./build/index.js",
     "build": "tsc --build",
     "dev": "nodemon -r tsconfig-paths/register index.ts",
-    "test": "nyc --reporter html --reporter json-summary mocha --exit"
+    "test": "nyc --reporter html --reporter json-summary mocha --exit",
+    "coverage" : "open coverage/index.html"
   },
   "author": "",
   "license": "ISC",
