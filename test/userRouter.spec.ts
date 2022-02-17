@@ -9,7 +9,8 @@ import { INVALID_PARAMETER_ID_FORMAT_ERROR } from '@shared/error/RequestError';
 describe('userRouter', () => {
     const user = {
         username: 'test',
-        password: bcryptjs.hashSync('test') 
+        password: bcryptjs.hashSync('test'),
+        mail: 'test@test'
     }
     let _id : Types.ObjectId | String = '';
 
@@ -38,8 +39,8 @@ describe('userRouter', () => {
                 expect(200).
                 expect([{
                     _id: _id.toString(),
+                    mail: user.mail,
                     username: user.username
-
                 }], done)
         })
     });

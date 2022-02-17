@@ -8,7 +8,8 @@ import bcryptjs from 'bcryptjs';
 describe('AuthenticationRouter', () => {
     const user = {
         username: 'test',
-        password: bcryptjs.hashSync('test') 
+        password: bcryptjs.hashSync('test'),
+        mail: 'test@test'
     }
     const success = {
         message: 'Success'

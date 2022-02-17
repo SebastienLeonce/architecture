@@ -7,26 +7,31 @@ import bcryptjs from 'bcryptjs';
 
 
 export async function getAllUser() : Promise<UserResponse[]> {
-    const users = await UserModel.find().select({username: 1})
-                        .catch((err) => {
-                            Log.fatal(err.message);
-                            throw DatabaseError.DB_UNAVAILABLE_ERROR})
+    const users = await UserModel.
+        find().
+        select({password: 0}).
+        catch((err) => {
+            Log.fatal(err.message);
+            throw DatabaseError.DB_UNAVAILABLE_ERROR
+        })
 
-    
     return users.map(xx=>{
         return <UserResponse>{
             _id: xx._id.toString(),
-            username: xx.username
+            username: xx.username,
+            mail: xx.mail
         };
   });
 }
 
 
 export async function getUserByUsername(username: string) {
-    const user = await UserModel.findOne({username: username})
-                       .catch((err) => {
-                            Log.fatal(err.message);
-                            throw DatabaseError.DB_UNAVAILABLE_ERROR})
+    const user = await UserModel.
+        findOne({username: username}).
+        catch((err) => {
+            Log.fatal(err.message);
+            throw DatabaseError.DB_UNAVAILABLE_ERROR
+        })
 
     if (!user) throw UserError.USER_NOT_FOUND_ERROR
 
@@ -34,23 +39,28 @@ export async function getUserByUsername(username: string) {
 }
 
 export async function getUserById(id: string) {
-    const user = await UserModel.findOne({_id: id}).select({password: 0})
-                       .catch((err) => {
-                            Log.fatal(err.message);
-                            throw DatabaseError.DB_UNAVAILABLE_ERROR })
+    const user = await UserModel.
+        findOne({_id: id}).
+        select({password: 0}).
+        catch((err) => {
+            Log.fatal(err.message);
+            throw DatabaseError.DB_UNAVAILABLE_ERROR 
+        })
     
     if (!user) throw UserError.USER_NOT_FOUND_ERROR
 
     return <UserResponse>{
         _id: user._id.toString(),
-        username: user.username
+        username: user.username,
+        mail: user.mail
     }
 }
 
-export async function createUser(username: string, password: string){
+export async function createUser(username: string, password: string, mail: string){
     const user = new UserModel<User>({
         username,
-        password: bcryptjs.hashSync(password) 
+        password: bcryptjs.hashSync(password),
+        mail
     });
 
     await user.
