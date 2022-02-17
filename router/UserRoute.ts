@@ -1,8 +1,8 @@
 import express from 'express';
-import * as UserService from 'services/UserService';
-import Error from 'shared/error/Error';
-import * as RequestError from 'shared/error/RequestError'
-import { UserResponse } from 'shared/user/UserResponse';
+import * as UserService from '@services/UserService';
+import Error from '@shared/error/Error';
+import * as RequestError from '@shared/error/RequestError'
+import { UserResponse } from '@shared/user/UserResponse';
 
 const router = express.Router();
 
