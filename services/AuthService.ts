@@ -5,8 +5,9 @@ import error from '@shared/error/Error';
 import bcryptjs from 'bcryptjs';
 
 export async function login(username : string, password : string) : Promise<string> {
-    const user = await UserService.getUserByUsername(username)
-                                  .catch((error: error) => {throw error})
+    const user = await UserService.
+        getUserByUsername(username).
+        catch((error: error) => {throw error})
 
     if (bcryptjs.compareSync(password, user.password)) throw AuthError.USER_PASSWORD_ERROR
 

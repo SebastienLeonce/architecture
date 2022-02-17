@@ -3,11 +3,12 @@ import supertest from 'supertest'
 import app from '../index'
 import { UserModel, User } from '@models/User';
 import { Types } from 'mongoose';
+import bcryptjs from 'bcryptjs';
 
 describe('AuthenticationRouter', () => {
     const user = {
         username: 'test',
-        password: 'test' 
+        password: bcryptjs.hashSync('test') 
     }
     const success = {
         message: 'Success'

@@ -1,4 +1,5 @@
 import supertest from 'supertest'
+import bcryptjs from 'bcryptjs';
 import app from '../index'
 
 import {UserModel, User } from '@models/User'
@@ -8,7 +9,7 @@ import { INVALID_PARAMETER_ID_FORMAT_ERROR } from '@shared/error/RequestError';
 describe('userRouter', () => {
     const user = {
         username: 'test',
-        password: 'test' 
+        password: bcryptjs.hashSync('test') 
     }
     let _id : Types.ObjectId | String = '';
 
