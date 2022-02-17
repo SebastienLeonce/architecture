@@ -3,6 +3,7 @@ import * as DatabaseError from '@shared/error/DatabaseError';
 import * as UserError from '@shared/error/UserError';
 import { UserResponse } from '@shared/user/UserResponse';
 import { Log } from '@utils/Logger';
+import bcryptjs from 'bcryptjs';
 
 
 export async function getAllUser() : Promise<UserResponse[]> {
@@ -49,12 +50,15 @@ export async function getUserById(id: string) {
 export async function createUser(username: string, password: string){
     const user = new UserModel<User>({
         username,
-        password 
+        password: bcryptjs.hashSync(password) 
     });
 
-    await user.save()
-              .catch((error) => { Log.fatal(error)
-                                  throw UserError.USER_ALREADY_EXIST_ERROR})
+    await user.
+        save().
+        catch((error) => { 
+            Log.fatal(error)
+            throw UserError.USER_ALREADY_EXIST_ERROR
+        })
 
     const { password:string, __v, ...data} = user.toJSON() 
 
@@ -62,10 +66,12 @@ export async function createUser(username: string, password: string){
 }
 
 export async function updateUserPassword(id: string, password: string){
-    let user = await UserModel.findByIdAndUpdate(id, { password })
-                                .catch((err) => { 
-                                    Log.fatal(err.message);
-                                    throw DatabaseError.DB_UNAVAILABLE_ERROR })
+    let user = await UserModel.
+        findByIdAndUpdate(id, { password: bcryptjs.hashSync(password) }).
+        catch((err) => { 
+            Log.fatal(err.message);
+            throw DatabaseError.DB_UNAVAILABLE_ERROR 
+        })
 
     if (!user) throw UserError.USER_NOT_FOUND_ERROR
 
