@@ -13,7 +13,7 @@ export default async (req: Request, _res : Response, next: NextFunction) => {
         const user = await jwtUtils.decode(jwt) as User
 
         if (user) {
-            // req.user = user
+            req.user = user
             return next()
         }
     }
