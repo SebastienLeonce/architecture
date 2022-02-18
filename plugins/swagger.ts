@@ -6,7 +6,7 @@ import swaggerUi    from 'swagger-ui-express';
 import components   from 'docs/components';
 import info         from 'docs/info';
 import servers      from 'docs/servers';
-import User from 'docs/User'
+import paths        from 'docs/paths';
 
 export default (app : Express) => {
     const swaggerDefinition = {
@@ -14,7 +14,7 @@ export default (app : Express) => {
         ...info,
         ...servers,
         ...components,
-        ...User
+        ...paths
     };
 
     const options = {

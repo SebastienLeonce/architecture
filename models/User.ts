@@ -15,13 +15,15 @@ const schema = new Schema <User> ({
         type: String,
         unique: true,
         required: true,
-        description: "The user's name."
+        description: "The user's name.",
+        example: "John"
     },
     mail: {
         type: String,
         unique: true,
         required: true,
-        description: "The user's mail."
+        description: "The user's mail.",
+        example: "john@john.com"
     },
     admin: {
         type: Boolean,
@@ -31,7 +33,8 @@ const schema = new Schema <User> ({
     password: {
         type: String,
         required: true,
-        description: "The user's password."
+        description: "The user's password.",
+        example: "JohnPassword"
     }
 });
 
