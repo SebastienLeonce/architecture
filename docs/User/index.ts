@@ -5,7 +5,7 @@ import putUser    from './putUser'
 import deleteUser from './deleteUser'
 
 export default {
-    paths:{
+
         '/user':{
             ...getUsers,
             ...postUser
@@ -15,5 +15,5 @@ export default {
             ...putUser,
             ...deleteUser
         }
-    }
+
 }
