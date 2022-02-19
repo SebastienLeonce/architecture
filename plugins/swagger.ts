@@ -1,28 +1,22 @@
-import { Express }  from 'express'
+import { Express }    from 'express'
 
-import swaggerJSDoc from 'swagger-jsdoc';
-import swaggerUi    from 'swagger-ui-express';
+import swaggerUi      from 'swagger-ui-express';
+import swaggerAutogen from 'swagger-autogen';
 
-import components   from 'docs/components';
-import info         from 'docs/info';
-import servers      from 'docs/servers';
-import paths        from 'docs/paths';
+import info           from 'docs/info';
+import servers        from 'docs/servers';
 
-export default (app : Express) => {
-    const swaggerDefinition = {
-        openapi: '3.0.0',
+export default async (app : Express) => {
+    const doc = {
         ...info,
         ...servers,
-        ...components,
-        ...paths
+        schemes: ['http'],
     };
 
-    const options = {
-        swaggerDefinition,
-        apis: ['./router/*.ts'],
-    };
+    const outputFile = './docs/swagger-output.json';
+    const endpointsFiles = ['router/Route'];
 
-    const swaggerSpec = swaggerJSDoc(options);
+    const swaggerSpec = await swaggerAutogen()(outputFile, endpointsFiles, doc)
 
-    app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+    app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec.data));
 }

@@ -6,9 +6,9 @@
   "scripts": {
     "start": "node -r ts-node/register -r tsconfig-paths/register ./build/index.js",
     "build": "tsc --build",
-    "dev": "nodemon -r tsconfig-paths/register index.ts",
+    "dev": "nodemon -r tsconfig-paths/register --ignore docs/ index.ts",
     "test": "nyc --reporter html --reporter json-summary mocha --exit",
-    "coverage" : "open coverage/index.html"
+    "coverage": "open coverage/index.html"
   },
   "author": "",
   "license": "ISC",
@@ -43,6 +43,7 @@
     "nodemon": "^2.0.15",
     "nyc": "^15.1.0",
     "supertest": "^6.2.2",
+    "swagger-autogen": "^2.18.8",
     "ts-node": "^10.5.0",
     "tslog": "^3.3.2"
   }

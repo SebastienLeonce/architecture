@@ -1,8 +1,3 @@
 export default {
-    servers: [
-        {
-            url: 'http://localhost:3000/api',
-            description: 'Development server',
-        },
-    ],
+    host: 'localhost:3000/api'
 }

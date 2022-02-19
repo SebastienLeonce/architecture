@@ -18,7 +18,7 @@ router.post('/login', async (req, res) => {
 
     AuthService.login(username, password)
                .then((jwt: string) => res.status(201).cookie(key, jwt, options).send({ message: 'Success'}))
-               .catch((err: Error) => res.status(err.status).send(err))
+               .catch((err: Error) => res.status(404).send(err))
 })
 
 router.post('/register', async (req, res) => {

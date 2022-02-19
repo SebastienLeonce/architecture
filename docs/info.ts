@@ -9,7 +9,7 @@ export default {
         },
         contact: {
             name: 'Sébastien LEONCE',
-            url: 'mailto:sebastienleonce91@gmail.com',
+            mail: 'mailto:sebastienleonce91@gmail.com',
         },
     }
 }
