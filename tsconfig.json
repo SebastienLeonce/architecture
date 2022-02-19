@@ -9,10 +9,12 @@
         "strict": true,
         "typeRoots": [ "@types", "./node_modules/@types" ],
         "paths": {
-           "@models/*": ["./models/*"],
-           "@shared/*": ["./shared/*"],
-           "@services/*": ["./services/*"],
-           "@utils/*": ["./utils/*"]
+           "@models/*": ["./src/models/*"],
+           "@shared/*": ["./src/shared/*"],
+           "@services/*": ["./src/services/*"],
+           "@utils/*": ["./src/utils/*"],
+           "@middlewares/*": ["./src/middlewares/*"],
+           "@docs/*": ["./src/docs/*"]
         }
     },
     "exclude" : [ 

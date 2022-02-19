@@ -1,6 +1,6 @@
 import supertest from 'supertest'
 
-import app from '../index'
+import app from '../src/index'
 import { UserModel, User } from '@models/User';
 import { Types } from 'mongoose';
 import bcryptjs from 'bcryptjs';
