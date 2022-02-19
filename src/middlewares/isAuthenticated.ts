@@ -5,7 +5,7 @@ import {
     Response,
     NextFunction
 } from 'express'
-import * as MiddlewareError from 'shared/error/MiddlewareError'
+import * as MiddlewareError from '@shared/error/MiddlewareError'
 
 export default async (req: Request, res : Response, next: NextFunction) => {
     const jwt = req.signedCookies.jwt

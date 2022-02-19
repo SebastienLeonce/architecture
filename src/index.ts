@@ -5,7 +5,7 @@ import cookieParser    from 'cookie-parser'
 import apiRouter       from './router/Route'
 import db              from './plugins/db';db;
 import swagger         from './plugins/swagger'
-import { cookieProps } from 'utils/jwt-utils';
+import { cookieProps } from './utils/jwt-utils';
 
 const port   = process.env.PORT || 3000;
 

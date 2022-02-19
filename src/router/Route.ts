@@ -4,7 +4,7 @@ import UserRoute    from './UserRoute'
 import AuthRoute    from './AuthRoute'
 import PostRoute    from './PostRoute'
 
-import isAuthenticated from 'middlewares/isAuthenticated';
+import isAuthenticated from '@middlewares/isAuthenticated';
 
 const router = express.Router();
 

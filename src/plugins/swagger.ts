@@ -3,10 +3,10 @@ import { Express }  from 'express'
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi    from 'swagger-ui-express';
 
-import components   from 'docs/components';
-import info         from 'docs/info';
-import servers      from 'docs/servers';
-import paths        from 'docs/paths';
+import components   from '@docs/components';
+import info         from '@docs/info';
+import servers      from '@docs/servers';
+import paths        from '@docs/paths';
 
 export default (app : Express) => {
     const swaggerDefinition = {
