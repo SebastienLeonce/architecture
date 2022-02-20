@@ -1,9 +1,7 @@
 import mongoose from 'mongoose';
 
 mongoose.connect('mongodb://mongo-db:27017')
-    .then(async () => {
-        // console.log("MongoDB Connected...");
-    }).catch((error) => {
+    .catch((error) => {
         console.error('connection error:', error);
         process.exit(1);
     });
