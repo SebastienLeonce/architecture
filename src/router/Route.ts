@@ -8,8 +8,22 @@ import isAuthenticated from '@middlewares/isAuthenticated';
 
 const router = express.Router();
 
-router.use('/auth', AuthRoute)
-router.use('/user', isAuthenticated, UserRoute);
-router.use('/post', isAuthenticated, PostRoute)
+router.use(
+  "/auth",
+  AuthRoute
+  // #swagger.tags = ['Auth']
+);
+router.use(
+  "/user",
+  isAuthenticated,
+  UserRoute
+  // #swagger.tags = ['User']
+);
+router.use(
+  "/post",
+  isAuthenticated,
+  PostRoute
+  // #swagger.tags = ['Post']
+);
 
 export default router
