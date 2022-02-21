@@ -1,9 +1,15 @@
 import mongoose from 'mongoose';
+import { MongoMemoryServer } from "mongodb-memory-server";
 
-mongoose.connect('mongodb://mongo-db:27017')
-    .catch((error) => {
-        console.error('connection error:', error);
+const connection = async () => {
+    const DB_URL = process.env.DB_URL || (await MongoMemoryServer.create()).getUri();
+    
+    mongoose.connect(DB_URL).catch((error) => {
+        console.error("connection error:", error);
         process.exit(1);
     });
+}
 
-export default {}
+connection()
+
+export default { }
