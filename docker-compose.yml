@@ -5,15 +5,20 @@ services:
       context: .
       dockerfile: Dockerfile
       target: ${NODE_ENV}
-    ports: 
+    environment:
+      - DB_URL
+      - NODE_ENV
+    ports:
       - 3000:3000
     container_name: api
     networks:
       - local
     volumes:
       - ./src:/usr/app/src
+      - ./test:/usr/app/test
     depends_on:
       - db
+    restart: always
   db:
     image: mongo
     ports:
@@ -23,6 +28,9 @@ services:
       - local
     volumes:
       - mongo-data:/data/db
+    command:
+      - "--logpath"
+      - "/var/log/mongodb/mongod.log"
 networks:
   local:
     driver: bridge

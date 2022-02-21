@@ -1,4 +1,4 @@
-FROM node:14.16.0-alpine3.10 as base
+FROM node:14.16.0 as base
 
 WORKDIR /usr/app
 
@@ -8,14 +8,18 @@ RUN npm install
 
 COPY . .
 
-FROM base as prod
-
 RUN npm run build
 
-CMD ["npm", "start"]
+FROM base as test
+
+CMD ["npm", "run", "test:watch"]
 
 FROM base as dev
 
-RUN npm run build
-
 CMD ["npm", "run", "dev"]
+
+FROM base as prod
+
+RUN npm run test
+
+CMD ["npm", "start"]
