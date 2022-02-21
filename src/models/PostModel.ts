@@ -1,4 +1,4 @@
-import { model, Schema } from "mongoose";
+import mongoose, { model, Schema } from "mongoose";
 import { User } from "./User";
 
 export interface Post {
@@ -30,4 +30,6 @@ const schema = new Schema <Post> ({
     }
 });
 
-export const PostModel = model<Post>('Post', schema);
+export const PostModel = mongoose.modelNames().includes("Post")
+  ? model<Post>('Post')
+  : model<Post>("Post", schema);

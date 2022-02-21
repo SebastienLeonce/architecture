@@ -1,4 +1,4 @@
-import {
+import mongoose, {
     model,
     Schema,
 } from "mongoose";
@@ -38,4 +38,6 @@ const schema = new Schema <User> ({
     }
 });
 
-export const UserModel =  model<User>('User', schema);
+export const UserModel = mongoose.modelNames().includes("User")
+  ? model<User>("User")
+  : model<User>("User", schema);
