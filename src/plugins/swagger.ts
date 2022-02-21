@@ -1,28 +1,30 @@
 import { Express }  from 'express'
 
-import swaggerJSDoc from 'swagger-jsdoc';
-import swaggerUi    from 'swagger-ui-express';
+import swaggerUi      from 'swagger-ui-express';
+import swaggerAutogen from "swagger-autogen";
 
-import components   from '@docs/components';
-import info         from '@docs/info';
-import servers      from '@docs/servers';
-import paths        from '@docs/paths';
-
-export default (app : Express) => {
-    const swaggerDefinition = {
-        openapi: '3.0.0',
-        ...info,
-        ...servers,
-        ...components,
-        ...paths
+export default async (app : Express) => {
+    const doc = {
+        info: {
+            title: 'Express API',
+            version: '1.0.0',
+            description: 'This is a REST API application made with Express.',
+            license: {
+                name: 'Licensed Under MIT',
+                url: 'https://spdx.org/licenses/MIT.html',
+            },
+            contact: {
+                name: 'Sébastien LEONCE',
+                mail: 'mailto:sebastienleonce91@gmail.com',
+            },
+        },
+        host: "localhost:3000/api",
     };
 
-    const options = {
-        swaggerDefinition,
-        apis: ['./router/*.ts'],
-    };
+    const outputFile = "/null";
+    const endpointsFiles = ["src/router/Route"];
 
-    const swaggerSpec = swaggerJSDoc(options);
+    const swaggerSpec = await swaggerAutogen()(outputFile, endpointsFiles, doc);
 
-    app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+    app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec.data));
 }
