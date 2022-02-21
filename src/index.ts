@@ -18,8 +18,10 @@ app.use(cookieParser(cookieProps.secret));
 app.use('/api', apiRouter);
 swagger(app);
 
-app.listen(port, () => {
-    console.log(`Server start on port ${port}`)
-});
+if (require.main === module) {
+    app.listen(port, () => {
+       console.log(`Server start on port ${port}`)
+    });
+}
 
 export default app;
