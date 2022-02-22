@@ -75,6 +75,7 @@ __metadata:
     cookie-parser: ^1.4.6
     expect-cookies: ^0.2.0
     express: ^4.17.2
+    express-prom-bundle: ^6.4.1
     jsonwebtoken: ^8.5.1
     mocha: ^9.2.0
     mongodb-memory-server: ^8.3.0
@@ -82,6 +83,7 @@ __metadata:
     mongoose-to-swagger: ^1.4.0
     nodemon: ^2.0.15
     nyc: ^15.1.0
+    prom-client: ^14.0.1
     randomstring: ^1.2.2
     supertest: ^6.2.2
     swagger-autogen: ^2.19.0
@@ -94,9 +96,27 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@architecture/cadvisor@workspace:packages/cadvisor":
+  version: 0.0.0-use.local
+  resolution: "@architecture/cadvisor@workspace:packages/cadvisor"
+  languageName: unknown
+  linkType: soft
+
 "@architecture/db@workspace:packages/db":
   version: 0.0.0-use.local
   resolution: "@architecture/db@workspace:packages/db"
+  languageName: unknown
+  linkType: soft
+
+"@architecture/graphana@workspace:packages/grafana":
+  version: 0.0.0-use.local
+  resolution: "@architecture/graphana@workspace:packages/grafana"
+  languageName: unknown
+  linkType: soft
+
+"@architecture/prometheus@workspace:packages/prometheus":
+  version: 0.0.0-use.local
+  resolution: "@architecture/prometheus@workspace:packages/prometheus"
   languageName: unknown
   linkType: soft
 
@@ -981,6 +1001,13 @@ __metadata:
   version: 2.2.0
   resolution: "binary-extensions@npm:2.2.0"
   checksum: ccd267956c58d2315f5d3ea6757cf09863c5fc703e50fbeb13a7dc849b812ef76e3cf9ca8f35a0c48498776a7478d7b4a0418e1e2b8cb9cb9731f2922aaad7f8
+  languageName: node
+  linkType: hard
+
+"bintrees@npm:1.0.1":
+  version: 1.0.1
+  resolution: "bintrees@npm:1.0.1"
+  checksum: 71d00ce450ee7ad080a3c86ae5f05fac841bdf95c0d78f3b3bbf8f754c19d7cb732f0f9213a46ed27cbec47eb124ffe2b686bef870718a4b9918c23210b55c73
   languageName: node
   linkType: hard
 
@@ -1875,6 +1902,18 @@ __metadata:
     cookie-signature: 1.0.x
     should: 7.1.x
   checksum: faf9d6ff2fa1f5d13d50d3c2f0eb6cbbbe30933a4529c7d81bcfb860577e1f980635b442f21817a6241ce598e8355cc869b394af851773029bc7bec8b1739d3e
+  languageName: node
+  linkType: hard
+
+"express-prom-bundle@npm:^6.4.1":
+  version: 6.4.1
+  resolution: "express-prom-bundle@npm:6.4.1"
+  dependencies:
+    on-finished: ^2.3.0
+    url-value-parser: ^2.0.0
+  peerDependencies:
+    prom-client: ">=12.0.0"
+  checksum: cf1b55c3fe3bdbb9ae19414e206809a01284474954512060e1e1e60dfa895420895e8567b975bed49e82dcd1da959dcc9557b7e97b14e1bd24ad835a2bb514fd
   languageName: node
   linkType: hard
 
@@ -3596,6 +3635,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"on-finished@npm:^2.3.0":
+  version: 2.4.0
+  resolution: "on-finished@npm:2.4.0"
+  dependencies:
+    ee-first: 1.1.1
+  checksum: 7bb6710df14e6a9b58ec91baf10662ddf465231526ed02e9b453bef1632bb27212d8c9c592d671b84c86aedbb6959f5016e3886c070947a8912bd8105eccdb14
+  languageName: node
+  linkType: hard
+
 "on-finished@npm:~2.3.0":
   version: 2.3.0
   resolution: "on-finished@npm:2.3.0"
@@ -3791,6 +3839,15 @@ __metadata:
   dependencies:
     fromentries: ^1.2.0
   checksum: 597769e3db6a8e2cb1cd64a952bbc150220588debac31c7cf1a9f620ce981e25583d8d70848d8a14953577608512984a8808c3be77e09af8ebdcdc14ec23a295
+  languageName: node
+  linkType: hard
+
+"prom-client@npm:^14.0.1":
+  version: 14.0.1
+  resolution: "prom-client@npm:14.0.1"
+  dependencies:
+    tdigest: ^0.1.1
+  checksum: 864c19b7086eda8fae652385bc8b8aeb155f85922e58672d07a64918a603341e120e65e08f9d77ccab546518dc18930284da8743c2aac3c968f626d7063d6bba
   languageName: node
   linkType: hard
 
@@ -4550,6 +4607,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tdigest@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "tdigest@npm:0.1.1"
+  dependencies:
+    bintrees: 1.0.1
+  checksum: 4d05fd70fb0aa70aa101d01557722b7ef9a91b2ebf8dfc274ca9852220397a74e4ed6e59c55335b4b1dd0ac5e1b65d25b8d32ae01278fc3b783c40f6d84303e2
+  languageName: node
+  linkType: hard
+
 "test-exclude@npm:^6.0.0":
   version: 6.0.0
   resolution: "test-exclude@npm:6.0.0"
@@ -4807,6 +4873,13 @@ __metadata:
   dependencies:
     prepend-http: ^2.0.0
   checksum: 1040e357750451173132228036aff1fd04abbd43eac1fb3e4fca7495a078bcb8d33cb765fe71ad7e473d9c94d98fd67adca63bd2716c815a2da066198dd37217
+  languageName: node
+  linkType: hard
+
+"url-value-parser@npm:^2.0.0":
+  version: 2.1.0
+  resolution: "url-value-parser@npm:2.1.0"
+  checksum: 6a63eb10a76d10ce6b56c1b33184e105d1fd4f9da43ac401cf638afd7b95874049f8534b0d74d5090dd5ddf41a9a7d203bdd0cc9822c8859db7d7529e954a903
   languageName: node
   linkType: hard
 

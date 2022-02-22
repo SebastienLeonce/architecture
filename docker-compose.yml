@@ -8,10 +8,23 @@ services:
     extends:
       file: ./packages/db/docker-compose.yml
       service: db
+  grafana:
+    extends:
+      file: ./packages/grafana/docker-compose.yml
+      service: grafana
+  prometheus:
+    extends:
+      file: ./packages/prometheus/docker-compose.yml
+      service: prometheus
+  cadvisor:
+    extends:
+      file: ./packages/cadvisor/docker-compose.yml
+      service: cadvisor
 networks:
   local:
     driver: bridge
 
 volumes:
+  grafana-data:
   mongo-data:
     driver: local
