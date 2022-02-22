@@ -102,6 +102,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@architecture/graphana@workspace:packages/grafana":
+  version: 0.0.0-use.local
+  resolution: "@architecture/graphana@workspace:packages/grafana"
+  languageName: unknown
+  linkType: soft
+
 "@architecture/root@workspace:.":
   version: 0.0.0-use.local
   resolution: "@architecture/root@workspace:."
