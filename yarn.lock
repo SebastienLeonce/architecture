@@ -96,6 +96,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@architecture/cadvisor@workspace:packages/cadvisor":
+  version: 0.0.0-use.local
+  resolution: "@architecture/cadvisor@workspace:packages/cadvisor"
+  languageName: unknown
+  linkType: soft
+
 "@architecture/db@workspace:packages/db":
   version: 0.0.0-use.local
   resolution: "@architecture/db@workspace:packages/db"
@@ -105,6 +111,12 @@ __metadata:
 "@architecture/graphana@workspace:packages/grafana":
   version: 0.0.0-use.local
   resolution: "@architecture/graphana@workspace:packages/grafana"
+  languageName: unknown
+  linkType: soft
+
+"@architecture/prometheus@workspace:packages/prometheus":
+  version: 0.0.0-use.local
+  resolution: "@architecture/prometheus@workspace:packages/prometheus"
   languageName: unknown
   linkType: soft
 

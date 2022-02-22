@@ -37,3 +37,9 @@ localhost:9090
 ```
 localhost:3000/docs
 ```
+
+## Cadvisor
+
+```
+localhost:8080
+```

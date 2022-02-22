@@ -16,6 +16,10 @@ services:
     extends:
       file: ./packages/prometheus/docker-compose.yml
       service: prometheus
+  cadvisor:
+    extends:
+      file: ./packages/cadvisor/docker-compose.yml
+      service: cadvisor
 networks:
   local:
     driver: bridge
