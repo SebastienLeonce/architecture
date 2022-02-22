@@ -1,0 +1,21 @@
+version: "3"
+services:
+  api:
+    build:
+      context: ../../
+      dockerfile: packages/api/Dockerfile
+      target: ${NODE_ENV}
+    environment:
+      - DB_URL
+      - NODE_ENV
+    ports:
+      - 3000:3000
+    container_name: api
+    networks:
+      - local
+    volumes:
+      - ./src:/usr/app/packages/api/src
+      - ./test:/usr/app/packages/api/test
+    depends_on:
+      - db
+    restart: always

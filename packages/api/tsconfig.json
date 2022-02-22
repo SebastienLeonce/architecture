@@ -7,7 +7,7 @@
         "outDir": "./build",
         "esModuleInterop": true,
         "strict": true,
-        "typeRoots": [ "@types", "./node_modules/@types" ],
+        "typeRoots": [ "@types", "../../node_modules/@types" ],
         "paths": {
            "@models/*": ["./src/models/*"],
            "@shared/*": ["./src/shared/*"],

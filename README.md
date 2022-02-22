@@ -5,17 +5,17 @@
 ## test
 
 ```
-docker-compose --env-file ./config/.env.test up --build
+yarn test
 ```
 
 ## dev
 
 ```
-docker-compose --env-file ./config/.env.dev up --build
+yarn dev
 ```
 
 ## prod
 
 ```
-docker-compose --env-file ./config/.env.prod up --build
+yarn prod
 ```
