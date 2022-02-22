@@ -1,9 +1,9 @@
 import supertest from 'supertest'
 
-import app from '../index'
-import { UserModel, User } from '@models/User';
-import { Types } from 'mongoose';
+import app from '../src/index'
+import mongoose from 'mongoose'
 import bcryptjs from 'bcryptjs';
+import { UserModel } from '@models/User'
 
 describe('AuthenticationRouter', () => {
     const user = {
@@ -14,19 +14,15 @@ describe('AuthenticationRouter', () => {
     const success = {
         message: 'Success'
     }
-    let _id : Types.ObjectId | String = '';
+
     const agent = supertest(app)
 
     describe('POST /auth/login', () => {
         beforeEach(async () => {
-            const doc = new UserModel<User>(user); 
-
-            await doc.save();
-            _id = doc._id;
-        })
-
-        afterEach(async () => {
-            await UserModel.deleteOne({ _id })
+            await UserModel.deleteMany({});
+            await agent.
+                post("/api/auth/register").
+                send(user);
         })
 
         it('Should put a JWT token on cookie and return success', done => {

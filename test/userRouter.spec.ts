@@ -1,10 +1,10 @@
 import supertest from 'supertest'
 import bcryptjs from 'bcryptjs';
-import app from '../index'
+import app from '../src/index'
 
-import {UserModel, User } from '@models/User'
-import { Types } from 'mongoose';
+import mongoose from 'mongoose';
 import { INVALID_PARAMETER_ID_FORMAT_ERROR } from '@shared/error/RequestError';
+import { UserModel } from '@models/User';
 
 describe('userRouter', () => {
     const user = {
@@ -12,36 +12,30 @@ describe('userRouter', () => {
         password: bcryptjs.hashSync('test'),
         mail: 'test@test'
     }
-    let _id : Types.ObjectId | String = '';
 
     const agent = supertest.agent(app)
 
-    
     beforeEach(async () => {
-        const doc = new UserModel<User>(user); 
-
-        await doc.save();
-        _id = doc._id;
+        await UserModel.deleteMany({});
+        await agent.
+            post('/api/auth/register').
+            send(user)
         
         await agent.
             post('/api/auth/login',).
             send(user)
     })
 
-    afterEach(async () => {
-        await UserModel.deleteOne({ _id })
-    })
-
     describe('GET /user', () => {
         it('Should Work', done => {
             agent.
                 get('/api/user').
-                expect(200).
+                expect(200, done)/*.
                 expect([{
                     _id: _id.toString(),
                     mail: user.mail,
                     username: user.username
-                }], done)
+                }], done)*/
         })
     });
 
