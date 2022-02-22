@@ -1,6 +1,7 @@
 import express         from 'express'
 import bodyParser      from 'body-parser'
 import cookieParser    from 'cookie-parser'
+import promBundle      from 'express-prom-bundle'
 
 import apiRouter       from './router/Route'
 import db              from './plugins/db';db;
@@ -11,10 +12,13 @@ const port   = process.env.PORT || 3000;
 
 const app    = express();
 
+const metricsMiddleware = promBundle({ includeMethod: true });
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser(cookieProps.secret));
 
+app.use(metricsMiddleware);
 app.use('/api', apiRouter);
 swagger(app);
 
