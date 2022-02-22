@@ -349,7 +349,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(max_over_time(graphql_resolver_time_count[6s])- min_over_time(graphql_resolver_time_count[24h]))",
+          "expr": "(time() - container_start_time_seconds{name='grafana'}) / 60 / 60",
           "format": "time_series",
           "intervalFactor": 2,
           "refId": "A",
@@ -357,7 +357,7 @@
         }
       ],
       "thresholds": "",
-      "title": "GraphQL Requests In 24H",
+      "title": "Uptime (h)",
       "type": "singlestat",
       "valueFontSize": "80%",
       "valueMaps": [
@@ -436,7 +436,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(rate(pm2_cpu[1m]))",
+          "expr": "sum(rate(container_cpu_system_seconds_total{name!=''}[1m]))*100",
           "format": "time_series",
           "intervalFactor": 2,
           "refId": "A",
@@ -524,7 +524,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "(sum(pm2_memory)) / (sum(machine_memory_bytes))",
+          "expr": "(sum(container_memory_usage_bytes{name!=''}) /  sum(machine_memory_bytes))  * 100",
           "format": "time_series",
           "intervalFactor": 2,
           "refId": "A",
