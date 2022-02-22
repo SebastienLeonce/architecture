@@ -1,0 +1,14 @@
+version: "3"
+services:
+  db:
+    image: mongo
+    ports:
+      - 27017:27017
+    container_name: mongo-db
+    networks:
+      - local
+    volumes:
+      - mongo-data:/data/db
+    command:
+      - "--logpath"
+      - "/var/log/mongodb/mongod.log"

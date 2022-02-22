@@ -5,17 +5,41 @@
 ## test
 
 ```
-docker-compose --env-file ./config/.env.test up --build
+yarn test
 ```
 
 ## dev
 
 ```
-docker-compose --env-file ./config/.env.dev up --build
+yarn dev
 ```
 
 ## prod
 
 ```
-docker-compose --env-file ./config/.env.prod up --build
+yarn prod
+```
+
+## Grafana
+
+```
+localhost:3001
+```
+
+## Prometheus
+
+```
+localhost:9090
+```
+
+## Doc
+
+```
+localhost:3000/docs
+```
+
+## Cadvisor
+
+```
+localhost:8080
 ```

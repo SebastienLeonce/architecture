@@ -1,4 +1,7 @@
-/node_modules
+node_modules
 build
 .nyc_output
 coverage
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
