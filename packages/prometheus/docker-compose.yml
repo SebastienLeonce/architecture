@@ -9,6 +9,3 @@ services:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     networks:
       - local
-    depends_on:
-      - api
-      - cadvisor

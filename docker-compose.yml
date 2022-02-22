@@ -14,10 +14,15 @@ services:
     extends:
       file: ./packages/grafana/docker-compose.yml
       service: grafana
+    depends_on:
+      - prometheus
   prometheus:
     extends:
       file: ./packages/prometheus/docker-compose.yml
       service: prometheus
+    depends_on:
+      - api
+      - cadvisor
   cadvisor:
     extends:
       file: ./packages/cadvisor/docker-compose.yml

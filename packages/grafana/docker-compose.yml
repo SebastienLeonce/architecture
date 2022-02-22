@@ -14,5 +14,3 @@ services:
       - ./provisioning:/etc/grafana/provisioning
     networks:
       - local
-    depends_on:
-      - api
