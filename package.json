@@ -6,9 +6,9 @@
   "private": true,
   "scripts": {
     "build": "docker-compose --env-file ./config/.env.prod build",
-    "test" : "docker-compose --env-file ./config/.env.test up --build",
-    "prod" : "docker-compose --env-file ./config/.env.prod up --build",
-    "dev"  : "docker-compose --env-file ./config/.env.dev  up --build"
+    "test": "docker-compose --env-file ./config/.env.test up --build",
+    "prod": "docker-compose --env-file ./config/.env.prod up --build",
+    "dev": "docker-compose --env-file ./config/.env.dev  up --build"
   },
   "author": "",
   "license": "ISC",
