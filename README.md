@@ -19,3 +19,21 @@ yarn dev
 ```
 yarn prod
 ```
+
+## Grafana
+
+```
+localhost:3001
+```
+
+## Prometheus
+
+```
+localhost:9090
+```
+
+## Doc
+
+```
+localhost:3000/docs
+```
