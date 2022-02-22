@@ -4,6 +4,8 @@ services:
     extends:
       file: ./packages/api/docker-compose.yml
       service: api
+    depends_on:
+      - db
   db:
     extends:
       file: ./packages/db/docker-compose.yml

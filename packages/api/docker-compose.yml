@@ -16,6 +16,4 @@ services:
     volumes:
       - ./src:/usr/app/packages/api/src
       - ./test:/usr/app/packages/api/test
-    depends_on:
-      - db
     restart: always
