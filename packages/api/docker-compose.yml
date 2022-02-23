@@ -11,6 +11,8 @@ services:
     ports:
       - 3000:3000
     container_name: api
+    labels:
+      traefik.http.routers.api-architecture.rule: Host(`api.localhost`)
     networks:
       - local
     volumes:

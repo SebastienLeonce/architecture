@@ -126,6 +126,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@architecture/traefik@workspace:packages/traefik":
+  version: 0.0.0-use.local
+  resolution: "@architecture/traefik@workspace:packages/traefik"
+  languageName: unknown
+  linkType: soft
+
 "@babel/code-frame@npm:^7.16.7":
   version: 7.16.7
   resolution: "@babel/code-frame@npm:7.16.7"
