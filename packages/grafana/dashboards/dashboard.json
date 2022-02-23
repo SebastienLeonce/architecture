@@ -436,7 +436,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(rate(container_cpu_system_seconds_total{name!=''}[1m]))*100",
+          "expr": "sum(sum(rate(container_cpu_usage_seconds_total{name!=\"\"}[5m])) by (name) *100)",
           "format": "time_series",
           "intervalFactor": 2,
           "refId": "A",
@@ -473,7 +473,7 @@
         },
         "overrides": []
       },
-      "format": "none",
+      "format": "GiB",
       "gauge": {
         "maxValue": 100,
         "minValue": 0,
@@ -524,7 +524,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "(sum(container_memory_usage_bytes{name!=''}) /  sum(machine_memory_bytes))  * 100",
+          "expr": "sum(sum(container_memory_rss{name!=\"\"}) by (name))* 10^-9",
           "format": "time_series",
           "intervalFactor": 2,
           "refId": "A",
