@@ -5,6 +5,7 @@ services:
       context: ../../
       dockerfile: packages/api/Dockerfile
       target: ${NODE_ENV}
+    image: sleonce/api
     environment:
       - DB_URL
       - NODE_ENV

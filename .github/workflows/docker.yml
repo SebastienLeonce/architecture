@@ -12,5 +12,9 @@ jobs:
       runs-on: ubuntu-latest
       steps:
       - uses: actions/checkout@v2
+      - name: Login to DockerHub
+        run: echo $DOCKER_HUB_PASS | docker login docker.io -u $DOCKER_HUB_USER --password-stdin
       - name: Build the stack
         run: yarn build
+      - name: Push
+        run: docker-compose push
