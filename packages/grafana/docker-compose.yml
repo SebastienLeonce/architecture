@@ -12,6 +12,9 @@ services:
     volumes:
       - ./dashboards:/var/lib/grafana/dashboards/
       - ./provisioning:/etc/grafana/provisioning
+    labels:
+      traefik.http.routers.grafana-architecture.rule: Host(`grafana.localhost`)
+      traefik.http.services.grafana-architecture.loadbalancer.server.port: 3001
     networks:
       - local
     depends_on:

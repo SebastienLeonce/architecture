@@ -11,6 +11,8 @@ services:
       - /dev/disk:/dev/disk/:ro
     devices:
       - /dev/kmsg:/dev/kmsg
+    labels:
+      traefik.http.routers.cadvisor-architecture.rule: Host(`cadvisor.localhost`)
     networks:
       - local
     ports:

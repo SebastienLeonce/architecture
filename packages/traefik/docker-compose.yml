@@ -11,6 +11,14 @@ services:
       - --entrypoints.web.address=:80
     labels:
       traefik.http.routers.dash.rule: Host(`dash.localhost`)
+    deploy:
+      resources:
+        limits:
+          cpus: "1.50"
+          memory: 2048M
+        reservations:
+          cpus: "0.25"
+          memory: 20M
     networks:
       - local
     ports:
