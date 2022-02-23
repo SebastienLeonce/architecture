@@ -5,6 +5,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
+    "start": "docker-compose pull && docker-compose --env-file ./config/.env.prod up -d",
     "build": "yarn && docker-compose --env-file ./config/.env.prod build",
     "test": "docker-compose --env-file ./config/.env.test up --build",
     "prod": "docker-compose --env-file ./config/.env.prod up --build",
