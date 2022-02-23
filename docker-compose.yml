@@ -20,6 +20,10 @@ services:
     extends:
       file: ./packages/cadvisor/docker-compose.yml
       service: cadvisor
+  traefik:
+    extends:
+      file: ./packages/traefik/docker-compose.yml
+      service: traefik
 networks:
   local:
     driver: bridge

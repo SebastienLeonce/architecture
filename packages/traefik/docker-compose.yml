@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  traefik:
+    container_name: traefik
+    image: traefik:v2.6
+    command:
+      - --api.insecure=true
+      - --providers.docker
+      - --log.level=INFO
+      - --entrypoints.web.address=:80
+    labels:
+      traefik.http.routers.dash.rule: Host(`dash.localhost`)
+    networks:
+      - local
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
