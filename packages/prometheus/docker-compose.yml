@@ -11,3 +11,4 @@ services:
       traefik.http.routers.prometheus-architecture.rule: Host(`prometheus.localhost`)
     networks:
       - local
+    restart: always

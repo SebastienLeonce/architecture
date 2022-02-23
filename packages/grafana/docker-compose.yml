@@ -17,3 +17,4 @@ services:
       traefik.http.services.grafana-architecture.loadbalancer.server.port: 3001
     networks:
       - local
+    restart: always
