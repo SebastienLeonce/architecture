@@ -13,7 +13,9 @@ services:
       - 3000:3000
     container_name: api
     labels:
-      traefik.http.routers.api-architecture.rule: Host(`api.localhost`)
+      traefik.http.routers.api-architecture.rule: PathPrefix(`/blog`)
+      traefik.http.middlewares.api-architecture.stripprefix.prefixes: /blog
+      traefik.http.routers.api-architecture.middlewares: api-architecture@docker
     networks:
       - local
     volumes:

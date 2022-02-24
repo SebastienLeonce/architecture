@@ -12,7 +12,9 @@ services:
     devices:
       - /dev/kmsg:/dev/kmsg
     labels:
-      traefik.http.routers.cadvisor-architecture.rule: Host(`cadvisor.localhost`)
+      traefik.http.routers.cadvisor.rule: PathPrefix(`/cadvisor`)
+      traefik.http.middlewares.cadvisor.stripprefix.prefixes: /cadvisor
+      traefik.http.routers.cadvisor.middlewares: cadvisor@docker
     networks:
       - local
     ports:
