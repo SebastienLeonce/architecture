@@ -9,11 +9,16 @@ services:
       - GF_SERVER_HTTP_PORT=3001
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/var/lib/grafana/dashboards/dashboard.json
+      - GF_SERVER_DOMAIN=localhost
+      - GF_SERVER_ROOT_URL=%(protocol)s://%(domain)s:%(http_port)s/grafana/
+      - GF_SERVER_SERVE_FROM_SUB_PATH=true
     volumes:
       - ./dashboards:/var/lib/grafana/dashboards/
       - ./provisioning:/etc/grafana/provisioning
     labels:
-      traefik.http.routers.grafana-architecture.rule: Host(`grafana.localhost`)
+      traefik.http.routers.grafana.rule: PathPrefix(`/grafana`)
+      traefik.http.middlewares.grafana.stripprefix.prefixes: /grafana
+      traefik.http.routers.grafana.middlewares: grafana@docker
       traefik.http.services.grafana-architecture.loadbalancer.server.port: 3001
     networks:
       - local
