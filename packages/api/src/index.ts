@@ -2,6 +2,7 @@ import express         from 'express'
 import bodyParser      from 'body-parser'
 import cookieParser    from 'cookie-parser'
 import promBundle      from 'express-prom-bundle'
+import cors            from 'cors'
 
 import apiRouter       from './router/Route'
 import db              from './plugins/db';db;
@@ -20,6 +21,7 @@ const metricsMiddleware = promBundle({
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser(cookieProps.secret));
+app.use(cors())
 
 app.use(metricsMiddleware);
 app.use('/api', apiRouter);
