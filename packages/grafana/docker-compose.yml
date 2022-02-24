@@ -15,6 +15,7 @@ services:
     volumes:
       - ./dashboards:/var/lib/grafana/dashboards/
       - ./provisioning:/etc/grafana/provisioning
+      - grafana-data:/var/lib/grafana
     labels:
       traefik.http.routers.grafana.rule: PathPrefix(`/grafana`)
       traefik.http.middlewares.grafana.stripprefix.prefixes: /grafana
