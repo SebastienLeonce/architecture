@@ -23,23 +23,23 @@ yarn prod
 ## Grafana
 
 ```
-http://grafana.localhost
+http://localhost/grafana/
 ```
 
 ## Prometheus
 
 ```
-http://prometheus.localhost
+http://localhost/prometheus/graph
 ```
 
 ## Doc
 
 ```
-http://api.localhost/docs/
+http://localhost/blog/docs/
 ```
 
 ## Cadvisor
 
 ```
-http://cadvisor.localhost/containers/
+http://localhost/cadvisor/containers/
 ```
