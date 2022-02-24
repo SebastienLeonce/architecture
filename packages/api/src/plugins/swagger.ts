@@ -18,7 +18,7 @@ export default async (app : Express) => {
                 mail: 'mailto:sebastienleonce91@gmail.com',
             },
         },
-        host: "localhost/blog/api",
+        host: process.env.API_URL,
     };
 
     const outputFile = "/null";
