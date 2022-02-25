@@ -5,8 +5,10 @@ import cors            from 'cors'
 
 import apiRouter       from './router/Route'
 import db              from './plugins/db';
-import swagger         from './plugins/swagger'
 import { cookieProps } from './utils/jwt-utils';
+
+import swaggerUi       from 'swagger-ui-express'
+import swaggerFile     from '@/swagger-output.json'
 
 const port   = process.env.PORT || 3000;
 
@@ -21,7 +23,7 @@ app.use(cookieParser(cookieProps.secret));
 app.use(cors())
 
 app.use('/api', apiRouter);
-swagger(app);
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 if (require.main === module) {
     app.listen(port, () => {
