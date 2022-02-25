@@ -5,3 +5,4 @@ coverage
 .yarn/*
 !.yarn/releases
 !.yarn/plugins
+*/**/swagger-output.json
