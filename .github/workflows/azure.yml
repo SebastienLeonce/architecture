@@ -19,6 +19,8 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_PASS }}
       - name: Build the stack
         run: yarn build
+      - name: Run test
+        run: docker-compose --env-file ./config/.env.prod run api yarn workspace @architecture/api test
       - name: Push
         run: docker-compose push
       - name: executing remote ssh commands using ssh key

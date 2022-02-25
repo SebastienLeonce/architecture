@@ -1,15 +1,27 @@
 import mongoose from 'mongoose';
-import { MongoMemoryServer } from "mongodb-memory-server";
+
+let db: mongoose.Mongoose;
 
 const connection = async () => {
-    const DB_URL = process.env.DB_URL || (await MongoMemoryServer.create()).getUri();
+    const DB_URL = process.env.DB_URL || '';
     
-    mongoose.connect(DB_URL).catch((error) => {
+    db = await mongoose.connect(DB_URL).catch((error) => {
         console.error("connection error:", error);
         process.exit(1);
     });
 }
 
-connection()
+const disconnection = () => {
+    db.disconnect()
+}
 
-export default { }
+const isConnected = () => {
+    return mongoose.connection.readyState;
+}
+
+export default { 
+    connection,
+    disconnection,
+    isConnected
+    
+}
