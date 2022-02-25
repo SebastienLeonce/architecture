@@ -32,7 +32,6 @@ __metadata:
     cookie-parser: ^1.4.6
     cors: ^2.8.5
     express: ^4.17.2
-    express-prom-bundle: ^6.4.1
     jsonwebtoken: ^8.5.1
     mocha: ^9.2.0
     mongodb-memory-server: ^8.3.0
@@ -1715,18 +1714,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express-prom-bundle@npm:^6.4.1":
-  version: 6.4.1
-  resolution: "express-prom-bundle@npm:6.4.1"
-  dependencies:
-    on-finished: ^2.3.0
-    url-value-parser: ^2.0.0
-  peerDependencies:
-    prom-client: ">=12.0.0"
-  checksum: cf1b55c3fe3bdbb9ae19414e206809a01284474954512060e1e1e60dfa895420895e8567b975bed49e82dcd1da959dcc9557b7e97b14e1bd24ad835a2bb514fd
-  languageName: node
-  linkType: hard
-
 "express@npm:^4.17.2":
   version: 4.17.3
   resolution: "express@npm:4.17.3"
@@ -3343,15 +3330,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"on-finished@npm:^2.3.0":
-  version: 2.4.0
-  resolution: "on-finished@npm:2.4.0"
-  dependencies:
-    ee-first: 1.1.1
-  checksum: 7bb6710df14e6a9b58ec91baf10662ddf465231526ed02e9b453bef1632bb27212d8c9c592d671b84c86aedbb6959f5016e3886c070947a8912bd8105eccdb14
-  languageName: node
-  linkType: hard
-
 "on-finished@npm:~2.3.0":
   version: 2.3.0
   resolution: "on-finished@npm:2.3.0"
@@ -4490,13 +4468,6 @@ __metadata:
   dependencies:
     prepend-http: ^2.0.0
   checksum: 1040e357750451173132228036aff1fd04abbd43eac1fb3e4fca7495a078bcb8d33cb765fe71ad7e473d9c94d98fd67adca63bd2716c815a2da066198dd37217
-  languageName: node
-  linkType: hard
-
-"url-value-parser@npm:^2.0.0":
-  version: 2.1.0
-  resolution: "url-value-parser@npm:2.1.0"
-  checksum: 6a63eb10a76d10ce6b56c1b33184e105d1fd4f9da43ac401cf638afd7b95874049f8534b0d74d5090dd5ddf41a9a7d203bdd0cc9822c8859db7d7529e954a903
   languageName: node
   linkType: hard
 
