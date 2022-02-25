@@ -17,13 +17,15 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USER }}
           password: ${{ secrets.DOCKER_HUB_PASS }}
-      - name: Build the stack
+      - name: Test
+        run: | 
+          docker-compose --env-file ./config/.env.test build
+          docker-compose --env-file ./config/.env.test run api yarn workspace @architecture/api test
+      - name: Build
         run: yarn build
-      - name: Run test
-        run: docker-compose --env-file ./config/.env.prod run api yarn workspace @architecture/api test
       - name: Push
         run: docker-compose push
-      - name: executing remote ssh commands using ssh key
+      - name: Deploy
         if: ${{ github.event_name == 'push' }}
         uses: appleboy/ssh-action@master
         with:
