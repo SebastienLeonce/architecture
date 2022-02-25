@@ -1,0 +1,16 @@
+version: "3"
+services:
+  db-admin:
+    image: percona/mongodb_exporter:0.30
+    container_name: db-admin
+    environment:
+      - MONGODB_URI=mongodb://mongo-db:27017
+    labels:
+      traefik.http.routers.db-admin.rule: PathPrefix(`/db-admin`)
+      traefik.http.middlewares.db-admin.stripprefix.prefixes: /db-admin
+      traefik.http.routers.db-admin.middlewares: db-admin@docker
+    ports:
+      - 9216:9216
+    networks:
+      - local
+    restart: always

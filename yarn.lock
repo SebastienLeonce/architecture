@@ -55,6 +55,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@architecture/db-admin@workspace:packages/db-admin":
+  version: 0.0.0-use.local
+  resolution: "@architecture/db-admin@workspace:packages/db-admin"
+  languageName: unknown
+  linkType: soft
+
 "@architecture/db@workspace:packages/db":
   version: 0.0.0-use.local
   resolution: "@architecture/db@workspace:packages/db"
