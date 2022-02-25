@@ -22,6 +22,4 @@ CMD ["yarn", "workspace", "@architecture/api", "dev"]
 
 FROM base as prod
 
-RUN yarn workspace @architecture/api test
-
 CMD ["yarn", "workspace", "@architecture/api", "start"]
