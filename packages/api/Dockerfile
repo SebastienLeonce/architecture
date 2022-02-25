@@ -10,6 +10,9 @@ RUN yarn install
 
 COPY packages/api packages/api
 
+ARG API_URL 
+ENV API_URL=${API_URL} 
+
 RUN yarn workspace @architecture/api build
 
 FROM base as test
