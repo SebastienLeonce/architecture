@@ -8,12 +8,13 @@ services:
     environment:
       - GF_SERVER_HTTP_PORT=3001
       - GF_AUTH_ANONYMOUS_ENABLED=true
-      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/var/lib/grafana/dashboards/dashboard.json
+      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/var/lib/grafana/dashboards/traefik-2-2_rev1.json
       - GF_SERVER_DOMAIN=localhost
       - GF_SERVER_ROOT_URL=%(protocol)s://%(domain)s:%(http_port)s/grafana/
       - GF_SERVER_SERVE_FROM_SUB_PATH=true
     volumes:
       - ./dashboards:/var/lib/grafana/dashboards/
+      - ./plugins:/var/lib/grafana/plugins/
       - ./provisioning:/etc/grafana/provisioning
       - grafana-data:/var/lib/grafana
     labels:
