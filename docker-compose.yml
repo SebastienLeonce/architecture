@@ -10,6 +10,12 @@ services:
     extends:
       file: ./packages/db/docker-compose.yml
       service: db
+  db-admin:
+    extends:
+      file: ./packages/db-admin/docker-compose.yml
+      service: db-admin
+    depends_on:
+      - db
   grafana:
     extends:
       file: ./packages/grafana/docker-compose.yml
@@ -31,6 +37,12 @@ services:
     extends:
       file: ./packages/traefik/docker-compose.yml
       service: traefik
+    depends_on:
+      - api
+      - db-admin
+      - grafana
+      - prometheus
+      - cadvisor
 networks:
   local:
     driver: bridge
