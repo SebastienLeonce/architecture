@@ -11,7 +11,12 @@ services:
       - /dev/disk:/dev/disk/:ro
     devices:
       - /dev/kmsg:/dev/kmsg
+    labels:
+      traefik.http.routers.cadvisor.rule: PathPrefix(`/cadvisor`)
+      traefik.http.middlewares.cadvisor.stripprefix.prefixes: /cadvisor
+      traefik.http.routers.cadvisor.middlewares: cadvisor@docker
     networks:
       - local
     ports:
-      - "8080:8080"
+      - "8081:8080"
+    restart: always

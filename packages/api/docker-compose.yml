@@ -5,12 +5,20 @@ services:
       context: ../../
       dockerfile: packages/api/Dockerfile
       target: ${NODE_ENV}
+      args:
+        API_URL: ${API_URL}
+    image: sleonce/api
     environment:
       - DB_URL
       - NODE_ENV
+      - API_URL
     ports:
       - 3000:3000
     container_name: api
+    labels:
+      traefik.http.routers.api-architecture.rule: PathPrefix(`/blog`)
+      traefik.http.middlewares.api-architecture.stripprefix.prefixes: /blog
+      traefik.http.routers.api-architecture.middlewares: api-architecture@docker
     networks:
       - local
     volumes:

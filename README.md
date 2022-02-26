@@ -1,45 +1,27 @@
-[![Node.js CI](https://github.com/SebastienLeonce/architecture/actions/workflows/node.js.yml/badge.svg)](https://github.com/SebastienLeonce/architecture/actions/workflows/node.js.yml)
-
 # architecture
+
+[![Node.js CI](https://github.com/SebastienLeonce/architecture/actions/workflows/node.js.yml/badge.svg)](https://github.com/SebastienLeonce/architecture/actions/workflows/node.js.yml)
 
 ## test
 
-```
+```bash
 yarn test
 ```
 
 ## dev
 
-```
+```bash
 yarn dev
 ```
 
 ## prod
 
-```
+```bash
 yarn prod
 ```
 
-## Grafana
-
-```
-localhost:3001
-```
-
-## Prometheus
-
-```
-localhost:9090
-```
-
-## Doc
-
-```
-localhost:3000/docs
-```
-
-## Cadvisor
-
-```
-localhost:8080
-```
+- grafana : [http://localhost/grafana](http://localhost/grafana)
+- prometheus : [http://localhost/prometheus/graph](http://localhost/prometheus/graph)
+- api docs : [http://localhost/blog/docs/](http://localhost/blog/docs/)
+- cadvisor : [http://localhost/cadvisor/containers/](http://localhost/cadvisor/containers/)
+- traefik : [http://localhost](http://localhost)

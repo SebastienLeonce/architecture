@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  traefik:
+    container_name: traefik
+    image: traefik:v2.6
+    command:
+      - --api.insecure=true
+      - --providers.docker
+      - --log.level=INFO
+      - --entrypoints.web.address=:80
+      - --metrics.prometheus=true
+    labels:
+      traefik.http.routers.dash.rule: Host(`localhost`)
+      traefik.http.services.dash.loadbalancer.server.port: 8080
+    deploy:
+      resources:
+        limits:
+          cpus: "1.50"
+          memory: 2048M
+        reservations:
+          cpus: "0.25"
+          memory: 20M
+    networks:
+      - local
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always

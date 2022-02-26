@@ -7,5 +7,10 @@ services:
       - 9090:9090
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    labels:
+      traefik.http.routers.prometheus.rule: PathPrefix(`/prometheus`)
+      traefik.http.middlewares.prometheus.stripprefix.prefixes: /prometheus
+      traefik.http.routers.prometheus.middlewares: prometheus@docker
     networks:
       - local
+    restart: always
