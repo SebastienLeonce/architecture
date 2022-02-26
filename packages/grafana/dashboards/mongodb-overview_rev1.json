@@ -437,12 +437,12 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "mongodb_mongod_metrics_cursor_open{instance=\"$host\"} or\nmongodb_mongod_cursors{instance=\"$host\"} or\nmongodb_mongos_metrics_cursor_open{instance=\"$host\"} or \nmongodb_mongos_cursors{instance=\"$host\"}",
+          "expr": "mongodb_ss_metrics_cursor_open{csr_type!=\"total\", instance=\"$host\"}",
           "format": "time_series",
           "hide": false,
           "interval": "$interval",
           "intervalFactor": 1,
-          "legendFormat": "{{state}}",
+          "legendFormat": "{{csr_type}}",
           "refId": "J",
           "step": 300
         }
@@ -657,12 +657,12 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "mongodb_mongod_global_lock_current_queue{instance=\"$host\"}",
+          "expr": "mongodb_ss_globalLock_currentQueue{instance=\"$host\", count_type!=\"total\"}",
           "format": "time_series",
           "hide": false,
           "interval": "$interval",
           "intervalFactor": 1,
-          "legendFormat": "{{type}}",
+          "legendFormat": "{{count_type}}",
           "refId": "J",
           "step": 300
         }
@@ -984,7 +984,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(mongodb_mongod_metrics_get_last_error_wtime_total_milliseconds{instance=\"$host\"}[$interval]) or \nirate(mongodb_mongod_metrics_get_last_error_wtime_total_milliseconds{instance=\"$host\"}[5m]) or\nrate(mongodb_mongos_metrics_get_last_error_wtime_total_milliseconds{instance=\"$host\"}[$interval]) or \nirate(mongodb_mongos_metrics_get_last_error_wtime_total_milliseconds{instance=\"$host\"}[5m])",
+          "expr": "rate(mongodb_ss_metrics_getLastError_wtime_totalMillis{instance=\"$host\"}[$interval])",
           "format": "time_series",
           "hide": false,
           "interval": "$interval",
@@ -1094,7 +1094,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(mongodb_mongod_metrics_get_last_error_wtime_num_total{instance=\"$host\"}[$interval]) or \nirate(mongodb_mongod_metrics_get_last_error_wtime_num_total{instance=\"$host\"}[5m]) or\nrate(mongodb_mongos_metrics_get_last_error_wtime_num_total{instance=\"$host\"}[$interval]) or \nirate(mongodb_mongos_metrics_get_last_error_wtime_num_total{instance=\"$host\"}[5m])",
+          "expr": "rate(mongodb_ss_metrics_getLastError_wtime_num{instance=\"$host\"}[$interval])",
           "format": "time_series",
           "hide": false,
           "interval": "$interval",
@@ -1104,7 +1104,7 @@
           "step": 300
         },
         {
-          "expr": "rate(mongodb_mongod_metrics_get_last_error_wtimeouts_total{instance=\"$host\"}[$interval]) or\nirate(mongodb_mongod_metrics_get_last_error_wtimeouts_total{instance=\"$host\"}[5m]) or\nrate(mongodb_mongos_metrics_get_last_error_wtimeouts_total{instance=\"$host\"}[$interval]) or\nirate(mongodb_mongos_metrics_get_last_error_wtimeouts_total{instance=\"$host\"}[5m])",
+          "expr": "rate(mongodb_ss_metrics_getLastError_wtimeouts{instance=\"$host\"}[$interval])",
           "format": "time_series",
           "hide": false,
           "interval": "$interval",
@@ -1215,12 +1215,12 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(mongodb_mongod_asserts_total{instance=\"$host\"}[$interval]) or \nirate(mongodb_mongod_asserts_total{instance=\"$host\"}[5m]) or\nrate(mongodb_mongos_asserts_total{instance=\"$host\"}[$interval]) or \nirate(mongodb_mongos_asserts_total{instance=\"$host\"}[5m])",
+          "expr": "rate(mongodb_ss_asserts{instance=\"$host\"}[$interval])",
           "format": "time_series",
           "hide": false,
           "interval": "$interval",
           "intervalFactor": 1,
-          "legendFormat": "{{type}}",
+          "legendFormat": "{{assert_type}}",
           "refId": "J",
           "step": 300
         }
@@ -1322,7 +1322,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(mongodb_mongod_extra_info_page_faults_total{instance=\"$host\"}[$interval]) or \nirate(mongodb_mongod_extra_info_page_faults_total{instance=\"$host\"}[5m]) or\nrate(mongodb_mongos_extra_info_page_faults_total{instance=\"$host\"}[$interval]) or \nirate(mongodb_mongos_extra_info_page_faults_total{instance=\"$host\"}[5m])",
+          "expr": "rate(mongodb_ss_extra_info_page_faults{instance=\"$host\"}[$interval])",
           "format": "time_series",
           "hide": false,
           "interval": "$interval",
