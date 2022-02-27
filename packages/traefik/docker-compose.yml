@@ -10,7 +10,9 @@ services:
       - --log.level=INFO
       - --entrypoints.web.address=:80
       - --metrics.prometheus=true
+      - --providers.docker.exposedbydefault=false
     labels:
+      traefik.enable: true
       traefik.http.routers.dash.rule: Host(`localhost`)
       traefik.http.services.dash.loadbalancer.server.port: 8080
     deploy:
