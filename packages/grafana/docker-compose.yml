@@ -18,6 +18,7 @@ services:
       - ./provisioning:/etc/grafana/provisioning
       - grafana-data:/var/lib/grafana
     labels:
+      traefik.enable: true
       traefik.http.routers.grafana.rule: PathPrefix(`/grafana`)
       traefik.http.middlewares.grafana.stripprefix.prefixes: /grafana
       traefik.http.routers.grafana.middlewares: grafana@docker
