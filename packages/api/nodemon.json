@@ -1,0 +1,8 @@
+{
+    "ext": "ts",
+    "execArgs": [
+        "--loader=./loader.js",
+        "--experimental-specifier-resolution=node",
+        "--no-warnings"
+    ]
+}

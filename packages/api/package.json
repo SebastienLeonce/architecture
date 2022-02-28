@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "node ./build/src/index.js",
-    "build": "ts-node src/plugins/swagger && tsc --build && tsc-alias",
-    "dev": "nodemon -L -r tsconfig-paths/register src/index.ts",
-    "test": "nyc --reporter html --reporter json-summary mocha --exit",
-    "test:watch": "mocha --timeout 20000 --watch",
+    "build": "tsc --build && tsc-alias",
+    "dev": "nodemon -L src",
+    "test": "mocha --exit",
+    "test:watch": "nodemon -L --exec 'mocha --parallel'",
     "coverage": "open coverage/index.html"
   },
   "author": "",
@@ -26,6 +26,7 @@
     "tslog": "^3.3.2"
   },
   "devDependencies": {
+    "@faker-js/faker": "^6.0.0-alpha.7",
     "@types/bcryptjs": "^2.4.2",
     "@types/cookie-parser": "^1.4.2",
     "@types/cors": "^2.8.12",

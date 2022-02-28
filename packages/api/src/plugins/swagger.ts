@@ -1,4 +1,5 @@
 import swaggerAutogen from "swagger-autogen";
+import swaggerUi      from 'swagger-ui-express'
 
 const doc = {
     info: {
@@ -17,7 +18,13 @@ const doc = {
     host: process.env.API_URL,
 };
 
-const outputFile = "swagger-output.json";
-const endpointsFiles = ['src/router/Route'];
+const outputFile = "/null";
+const endpointsFiles = [
+    `${process.env.NODE_ENV == 'prod' 
+    ? '/usr/app/packages/api/build/src/router/Route.js' 
+    : 'src/router/Route'}`
+];
 
-swaggerAutogen()(outputFile, endpointsFiles, doc);
+const swaggerSpec = await swaggerAutogen()(outputFile, endpointsFiles, doc);
+
+export default [swaggerUi.serve, swaggerUi.setup(swaggerSpec.data)]

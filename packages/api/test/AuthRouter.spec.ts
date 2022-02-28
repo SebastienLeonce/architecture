@@ -1,16 +1,12 @@
 import supertest from 'supertest'
+import { generateUser } from './fixtures/generateUser';
 
 import app from '../src/index'
-import mongoose from 'mongoose'
-import bcryptjs from 'bcryptjs';
 import { UserModel } from '@models/User'
 
 describe('AuthenticationRouter', () => {
-    const user = {
-        username: 'test',
-        password: bcryptjs.hashSync('test'),
-        mail: 'test@test'
-    }
+    const user = generateUser();
+
     const success = {
         message: 'Success'
     }
@@ -19,10 +15,14 @@ describe('AuthenticationRouter', () => {
 
     describe('POST /auth/login', () => {
         beforeEach(async () => {
-            await UserModel.deleteMany({});
             await agent.
                 post("/api/auth/register").
-                send(user);
+                send(user).
+                expect(success);
+        })
+
+        afterEach(async () => {
+            await UserModel.deleteOne({ username: user.username });
         })
 
         it('Should put a JWT token on cookie and return success', done => {
