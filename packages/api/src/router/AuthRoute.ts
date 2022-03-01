@@ -17,8 +17,8 @@ router.post('/login', async (req, res) => {
     const { key, options } = cookieProps;
 
     AuthService.login(username, password)
-               .then((jwt: string) => res.status(201).cookie(key, jwt, options).send({ message: 'Success'}))
-               .catch((err: Error) => res.status(err.status).send(err))
+        .then(([jwt, _id]) => res.status(201).cookie(key, jwt, options).send({ message: 'Success', _id}))
+        .catch((err: Error) => res.status(err.status).send(err))
 })
 
 router.post('/register', async (req, res) => {
@@ -31,7 +31,7 @@ router.post('/register', async (req, res) => {
 
     AuthService.
         register(username, password, mail).
-        then((jwt: string) => res.status(201).cookie(key, jwt, options).send({ message: 'Success'})).
+        then(([jwt, _id]) => res.status(201).cookie(key, jwt, options).send({ message: 'Success', _id})).
         catch((err: Error) => res.status(err.status).send(err))
 })
 

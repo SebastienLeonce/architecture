@@ -16,11 +16,17 @@ describe('AuthenticationRouter', () => {
     const agent = supertest(app)
 
     describe('POST /auth/login', () => {
-        beforeEach(async () => {
-            await agent.
+        let _id = '';
+
+        beforeEach((done) => {
+            agent.
                 post("/api/auth/register").
                 send(user).
-                expect(success);
+                end((err, res) => {
+                    if (err) return done(err)
+                    _id = res.body._id;
+                    done()
+                })
         })
 
         afterEach(async () => {
@@ -32,7 +38,10 @@ describe('AuthenticationRouter', () => {
                 post('/api/auth/login',).
                 send(user).
                 expect(201).
-                expect(success).
+                expect({
+                    message: 'Success',
+                    _id
+                }).
                 end((err, _res) => {
                     if (err) return done(err)
                     done()

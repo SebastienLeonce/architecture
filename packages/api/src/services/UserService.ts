@@ -24,7 +24,6 @@ export async function getAllUser() : Promise<UserResponse[]> {
   });
 }
 
-
 export async function getUserByUsername(username: string) {
     const user = await UserModel.
         findOne({username: username}).
