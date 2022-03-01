@@ -9,7 +9,6 @@ import bcryptjs from 'bcryptjs';
 export async function getAllUser() : Promise<UserResponse[]> {
     const users = await UserModel.
         find().
-        select({password: 0}).
         catch((err) => {
             Log.fatal(err.message);
             throw DatabaseError.DB_UNAVAILABLE_ERROR
@@ -40,7 +39,6 @@ export async function getUserByUsername(username: string) {
 export async function getUserById(id: string) {
     const user = await UserModel.
         findOne({_id: id}).
-        select({password: 0}).
         catch((err) => {
             Log.fatal(err.message);
             throw DatabaseError.DB_UNAVAILABLE_ERROR 
