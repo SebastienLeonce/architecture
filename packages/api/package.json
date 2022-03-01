@@ -8,7 +8,7 @@
     "build": "tsc --build && tsc-alias",
     "dev": "nodemon src",
     "test": "mocha --exit",
-    "test:watch": "nodemon --exec 'mocha --parallel'",
+    "test:watch": "nodemon --exec 'mocha'",
     "coverage": "open coverage/index.html"
   },
   "author": "",
