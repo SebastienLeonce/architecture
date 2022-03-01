@@ -4,29 +4,38 @@ on:
   push:
     branches: [ master ]
   pull_request:
-    branches: [ master ]
   workflow_dispatch:
 
 jobs:
-  build-images:
-      runs-on: ubuntu-latest
-      steps:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: build
+        run: docker-compose --env-file ./config/.env.test build
+      - name: test
+        run: docker-compose --env-file ./config/.env.test run api yarn workspace @architecture/api test
+  prod:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v2
       - name: Login to Docker Hub
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_HUB_USER }}
           password: ${{ secrets.DOCKER_HUB_PASS }}
-      - name: Test
-        run: | 
-          docker-compose --env-file ./config/.env.test build
-          docker-compose --env-file ./config/.env.test run api yarn workspace @architecture/api test
-      - name: Build
+      - name: build
         run: yarn build
-      - name: Push
-        run: docker-compose push
-      - name: Deploy
+      - name: deploy to DockerHub
         if: ${{ github.event_name == 'push' }}
+        run: docker-compose push
+  cd:
+    needs: prod
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' }}
+    steps:
+      - name: Login to Azure VM
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
