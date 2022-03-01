@@ -1,29 +1,24 @@
 import supertest from 'supertest'
-import bcryptjs from 'bcryptjs';
+import { generateUser } from './fixtures/generateUser';
+
 import app from '../src/index'
 
-import mongoose from 'mongoose';
 import { INVALID_PARAMETER_ID_FORMAT_ERROR } from '@shared/error/RequestError';
 import { UserModel } from '@models/User';
 
 describe('userRouter', () => {
-    const user = {
-        username: 'test',
-        password: bcryptjs.hashSync('test'),
-        mail: 'test@test'
-    }
+    const user = generateUser();
 
     const agent = supertest.agent(app)
 
     beforeEach(async () => {
-        await UserModel.deleteMany({});
         await agent.
             post('/api/auth/register').
             send(user)
-        
-        await agent.
-            post('/api/auth/login',).
-            send(user)
+    })
+
+    afterEach(async () => {
+        await UserModel.deleteOne({ username: user.username });
     })
 
     describe('GET /user', () => {
