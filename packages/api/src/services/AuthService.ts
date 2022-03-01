@@ -9,7 +9,7 @@ export async function login(username : string, password : string) : Promise<stri
         getUserByUsername(username).
         catch((error: error) => {throw error})
 
-    if (bcryptjs.compareSync(bcryptjs.hashSync(password), user.password)) throw AuthError.USER_PASSWORD_ERROR
+    if (!bcryptjs.compareSync(password, user.password)) throw AuthError.USER_PASSWORD_ERROR
 
     return await jwtUtils.sign({
         id: user._id,
