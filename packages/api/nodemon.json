@@ -1,5 +1,6 @@
 {
     "ext": "ts",
+    "legacyWatch": true,
     "execArgs": [
         "--loader=./loader.js",
         "--experimental-specifier-resolution=node",

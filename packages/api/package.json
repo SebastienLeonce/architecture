@@ -6,9 +6,9 @@
   "type": "module",
   "scripts": {
     "build": "tsc --build && tsc-alias",
-    "dev": "nodemon -L src",
+    "dev": "nodemon src",
     "test": "mocha --exit",
-    "test:watch": "nodemon -L --exec 'mocha --parallel'",
+    "test:watch": "nodemon --exec 'mocha --parallel'",
     "coverage": "open coverage/index.html"
   },
   "author": "",
