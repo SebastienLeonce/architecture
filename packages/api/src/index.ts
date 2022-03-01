@@ -7,8 +7,7 @@ import apiRouter       from './router/Route'
 import db              from './plugins/db';
 import { cookieProps } from './utils/jwt-utils';
 
-import swaggerUi       from 'swagger-ui-express'
-import swaggerFile     from '@/swagger-output.json'
+import swaggerSpec     from './plugins/swagger'
 
 const port   = process.env.PORT || 3000;
 
@@ -23,9 +22,9 @@ app.use(cookieParser(cookieProps.secret));
 app.use(cors())
 
 app.use('/api', apiRouter);
-app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.use("/docs", ...swaggerSpec);
 
-if (require.main === module) {
+if (process.env.NODE_ENV != 'test') {
     app.listen(port, () => {
        console.log(`Server start on port ${port}`)
     });

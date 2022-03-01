@@ -1,7 +1,5 @@
-import mongoose, {
-    model,
-    Schema,
-} from "mongoose";
+import mongoose from 'mongoose';
+const { model, Schema, } = mongoose;
 
 export interface User {
     username: string,

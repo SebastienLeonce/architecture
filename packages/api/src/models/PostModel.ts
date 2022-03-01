@@ -1,11 +1,12 @@
-import mongoose, { model, Schema } from "mongoose";
+import mongoose from 'mongoose';
+const { model, Schema, } = mongoose;
 import { User } from "./User";
 
 export interface Post {
     title: string, 
     content: string,
     date?: Date,
-    user: Schema.Types.ObjectId | User
+    user: mongoose.Schema.Types.ObjectId | User
 }
 
 const schema = new Schema <Post> ({

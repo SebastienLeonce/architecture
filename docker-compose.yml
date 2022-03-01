@@ -39,7 +39,6 @@ services:
       service: traefik
     depends_on:
       - api
-      - db-admin
       - grafana
       - prometheus
       - cadvisor

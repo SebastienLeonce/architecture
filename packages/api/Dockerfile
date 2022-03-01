@@ -1,4 +1,4 @@
-FROM node:14.16.0 as base
+FROM node:16.14.0 as base
 
 WORKDIR /usr/app
 
@@ -10,9 +10,6 @@ RUN yarn install
 
 COPY packages/api packages/api
 
-ARG API_URL 
-ENV API_URL=${API_URL} 
-
 RUN yarn workspace @architecture/api build
 
 FROM base as test
@@ -23,7 +20,7 @@ FROM base as dev
 
 CMD ["yarn", "workspace", "@architecture/api", "dev"]
 
-FROM node:14.16.0 as build-env
+FROM node:16.14.0 as build-env
 
 WORKDIR /usr/app
 
@@ -34,7 +31,7 @@ COPY packages/api/package.json packages/api/
 RUN yarn install --production
 
 
-FROM gcr.io/distroless/nodejs:14 as prod
+FROM gcr.io/distroless/nodejs:16 as prod
 
 WORKDIR /usr/app
 
@@ -45,4 +42,4 @@ COPY --from=base /usr/app/packages/api/build packages/api/build
 COPY --from=build-env /usr/app/node_modules node_modules
 COPY --from=build-env /usr/app/packages/api/node_modules packages/api/node_modules
 
-CMD ["packages/api/build/src/index.js"]
+CMD ["--experimental-specifier-resolution", "node", "packages/api/build/src/index.js"]
