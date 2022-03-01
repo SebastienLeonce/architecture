@@ -12,7 +12,7 @@ router.post('/login', async (req, res) => {
     Log.info('POST /api/auth/login');
 
     const { username, password } = req.body;
-    if (!username && !password) return res.status(400).send(RequestError.BODY_PARAMETERS_UNDEFINED_ERROR);
+    if (!username || !password) return res.status(400).send(RequestError.BODY_PARAMETERS_UNDEFINED_ERROR);
 
     const { key, options } = cookieProps;
 
@@ -25,7 +25,7 @@ router.post('/register', async (req, res) => {
     Log.info('POST /api/auth/register');
 
     const { username, password, mail } = req.body;
-    if (!username && !password) res.status(400).send(RequestError.BODY_PARAMETERS_UNDEFINED_ERROR);
+    if (!username || !password) res.status(400).send(RequestError.BODY_PARAMETERS_UNDEFINED_ERROR);
 
     const { key, options } = cookieProps;
 
