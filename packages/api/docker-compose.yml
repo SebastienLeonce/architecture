@@ -9,15 +9,13 @@ services:
     environment:
       - DB_URL
       - NODE_ENV
-      - API_URL
+      - DOMAIN
     ports:
       - 3000:3000
     container_name: api
     labels:
       traefik.enable: true
-      traefik.http.routers.api-architecture.rule: PathPrefix(`/blog`)
-      traefik.http.middlewares.api-architecture.stripprefix.prefixes: /blog
-      traefik.http.routers.api-architecture.middlewares: api-architecture@docker
+      traefik.http.routers.api.rule: Host(`api.${DOMAIN}`)
     networks:
       - local
     volumes:

@@ -15,7 +15,7 @@ const doc = {
             mail: 'mailto:sebastienleonce91@gmail.com',
         },
     },
-    host: process.env.API_URL,
+    host: `api.${process.env.DOMAIN}/api`,
 };
 
 const outputFile = "/null";
