@@ -6,8 +6,8 @@ services:
       service: api
     depends_on:
       - db
-    links:
-      - elasticsearch:elasticsearch
+    # links:
+    #   - elasticsearch:elasticsearch
   db:
     extends:
       file: ./packages/db/docker-compose.yml
