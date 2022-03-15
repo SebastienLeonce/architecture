@@ -2,7 +2,6 @@ import express         from 'express'
 import bodyParser      from 'body-parser'
 import cors            from 'cors'
 import * as MQReceiverService from './services/MQReceiverService'
-// import * as MailSenderService from './services/MailSenderService'
 
 const port   = process.env.PORT || 30011;
 

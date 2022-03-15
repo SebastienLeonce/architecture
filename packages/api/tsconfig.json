@@ -6,7 +6,7 @@
         "baseUrl": ".",
         "outDir": "./build",
         "esModuleInterop": true,
-        "strict": false,
+        "strict": true,
         "typeRoots": [ "@types", "../../node_modules/@types" ],
         "resolveJsonModule": true,
         "skipLibCheck": true,
