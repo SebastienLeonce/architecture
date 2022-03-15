@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  db-ui:
+    container_name: "db-ui"
+    image: sleonce/db-ui
+    labels:
+      traefik.enable: true
+      traefik.http.routers.db-ui.rule: Host(`db-ui.${DOMAIN}`)
+    restart: always
+    ports:
+      - "4231:4321"
+    environment:
+      - MONGO_URL=${DB_URL}
+    networks:
+      - local
