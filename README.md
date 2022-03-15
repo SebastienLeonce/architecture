@@ -25,3 +25,4 @@ yarn prod
 - api docs : [http://api.localhost](http://api.localhost)
 - cadvisor : [http://cadvisor.localhost](http://cadvisor.localhost)
 - traefik : [http://traefik.localhost](http://traefik.localhost)
+- db-ui : [http://db-ui.localhost](http://db-ui.localhost)
