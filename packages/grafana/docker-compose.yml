@@ -19,6 +19,7 @@ services:
       traefik.enable: true
       traefik.http.routers.grafana.rule: Host(`grafana.${DOMAIN}`)
       traefik.http.services.grafana-architecture.loadbalancer.server.port: 3001
+      traefik.http.routers.grafana.middlewares: admin-auth
     networks:
       - local
     restart: always
