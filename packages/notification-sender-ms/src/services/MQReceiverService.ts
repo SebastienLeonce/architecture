@@ -1,4 +1,5 @@
 import client, {Connection, Channel, ConsumeMessage} from 'amqplib'
+import * as MailSenderService from './MailSenderService'
 
 const rabbitMQURL = process.env.MQ_URL || ""
 
@@ -9,6 +10,13 @@ export async function consume(queueName: string){
     if (msg) {
       console.log(msg.content.toString())
       channel.ack(msg)
+
+      MailSenderService.sendMessage({
+        from: "no-reply@architecture.dev",
+        to: "pro.alexisdacosta@gmail.com",
+        subject: "TESTS",
+        text: msg.content.toString()
+    })
     }
   };
 
