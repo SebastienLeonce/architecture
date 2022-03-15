@@ -6,6 +6,8 @@ services:
       service: api
     depends_on:
       - db
+    # links:
+    #   - elasticsearch:elasticsearch
   db:
     extends:
       file: ./packages/db/docker-compose.yml
@@ -39,6 +41,28 @@ services:
     extends:
       file: ./packages/cadvisor/docker-compose.yml
       service: cadvisor
+  notification-sender-ms:
+    extends:
+      file: ./packages/notification-sender-ms/docker-compose.yml
+      service: notification-sender-ms
+    depends_on:
+      - rabbitmq
+  rabbitmq:
+    extends:
+      file: ./packages/rabbitmq/docker-compose.yml
+      service: rabbitmq
+  # elasticsearch:
+  #   extends:
+  #     file: ./packages/elasticsearch/docker-compose.yml
+  #     service: elasticsearch
+  # kibana:
+  #   extends:
+  #     file: ./packages/kibana/docker-compose.yml
+  #     service: kibana
+  # loki:
+  #   extends:
+  #     file: ./packages/loki/docker-compose.yml
+  #     service: loki
   traefik:
     extends:
       file: ./packages/traefik/docker-compose.yml
@@ -56,3 +80,4 @@ volumes:
   grafana-data:
   mongo-data:
     driver: local
+  data:
