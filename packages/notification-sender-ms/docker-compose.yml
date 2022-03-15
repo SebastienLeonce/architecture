@@ -1,0 +1,23 @@
+version: "3"
+services:
+  notification-sender-ms:
+    build:
+      context: ../../
+      dockerfile: packages/notification-sender-ms/Dockerfile
+      target: ${NODE_ENV}
+    image: adacosta/notification-sender-ms
+    environment:
+      - MQ_NOTIFICATION_QUEUE
+      - NODE_ENV
+      - MQ_URL
+    ports:
+      - 30011:30011
+    container_name: notification-sender-ms
+    labels:
+      traefik.enable: true
+    networks:
+      - local
+    volumes:
+      - ./src:/usr/app/packages/notification-sender-ms/src
+      - ./test:/usr/app/packages/notification-sender-ms/test
+    restart: always
