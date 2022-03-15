@@ -13,7 +13,7 @@ services:
       - --providers.docker.exposedbydefault=false
     labels:
       traefik.enable: true
-      traefik.http.routers.dash.rule: Host(`localhost`)
+      traefik.http.routers.dash.rule: Host(`traefik.${DOMAIN}`)
       traefik.http.services.dash.loadbalancer.server.port: 8080
     deploy:
       resources:
