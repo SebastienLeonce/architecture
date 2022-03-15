@@ -16,6 +16,12 @@ services:
       service: db-admin
     depends_on:
       - db
+  db-ui:
+    extends:
+      file: ./packages/db-ui/docker-compose.yml
+      service: db-ui
+    depends_on:
+      - db
   grafana:
     extends:
       file: ./packages/grafana/docker-compose.yml
