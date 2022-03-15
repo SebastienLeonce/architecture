@@ -20,6 +20,8 @@ services:
       traefik.http.routers.api-architecture.middlewares: api-architecture@docker
     networks:
       - local
+    links:
+      - elasticsearch:elasticsearch
     volumes:
       - ./src:/usr/app/packages/api/src
       - ./test:/usr/app/packages/api/test
