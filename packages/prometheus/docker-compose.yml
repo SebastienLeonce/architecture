@@ -10,6 +10,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.prometheus.rule: Host(`prometheus.${DOMAIN}`)
+      traefik.http.routers.prometheus.middlewares: admin-auth
     networks:
       - local
     restart: always

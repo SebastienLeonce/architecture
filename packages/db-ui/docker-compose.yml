@@ -7,6 +7,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.db-ui.rule: Host(`db-ui.${DOMAIN}`)
+      traefik.http.routers.db-ui.middlewares: admin-auth
     restart: always
     ports:
       - "4231:4321"
