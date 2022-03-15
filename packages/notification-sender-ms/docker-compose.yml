@@ -5,7 +5,7 @@ services:
       context: ../../
       dockerfile: packages/notification-sender-ms/Dockerfile
       target: ${NODE_ENV}
-    image: adacosta/notification-sender-ms
+    image: sleonce/notification-sender-ms
     environment:
       - MQ_NOTIFICATION_QUEUE
       - NODE_ENV
