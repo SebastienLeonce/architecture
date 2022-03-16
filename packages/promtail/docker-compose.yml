@@ -1,0 +1,11 @@
+version: "3"
+services:
+  promtail:
+      image: grafana/promtail:2.4.1
+      volumes:
+        - /var/log:/var/log
+        - /var/lib/docker/containers:/var/lib/docker/containers:ro
+        - "./docker-config.yaml:/etc/promtail/docker-config.yml"
+      command: -config.file=/etc/promtail/docker-config.yml
+      networks:
+        - local

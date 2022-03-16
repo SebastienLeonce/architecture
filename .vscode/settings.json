@@ -1,9 +1,13 @@
 {
     "files.exclude": {
-        // "node_modules": true,
-        // "**/build": true,
-        // "**/.nyc_output": true,
-        // "**/coverage": true,
-        // "package-lock.json": true
+        "node_modules": true,
+        "**/build": true,
+        "**/.nyc_output": true,
+        "**/coverage": true,
+        "package-lock.json": true,
+        "yarn.lock": true,
+        ".yarn": true,
+        ".github": true,
+        ".vscode": true
     }
 }
