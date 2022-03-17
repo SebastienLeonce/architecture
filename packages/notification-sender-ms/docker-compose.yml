@@ -10,6 +10,8 @@ services:
       - MQ_NOTIFICATION_QUEUE
       - NODE_ENV
       - MQ_URL
+      - MAIL_API_KEY=${ARCHI_MAIL_API_KEY}
+      - MAIL_USERNAME=${ARCHI_MAIL_USERNAME}
     ports:
       - 30011:30011
     container_name: notification-sender-ms

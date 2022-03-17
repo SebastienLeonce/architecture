@@ -6,3 +6,4 @@ coverage
 !.yarn/releases
 !.yarn/plugins
 */**/swagger-output.json
+.scannerwork

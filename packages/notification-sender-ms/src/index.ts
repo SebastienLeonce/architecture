@@ -18,12 +18,6 @@ if (process.env.NODE_ENV != 'test') {
        console.log(queueNotification);
        setTimeout(() => {
             MQReceiverService.consume(queueNotification);
-            // MailSenderService.sendEmail({
-            //     from: "",
-            //     to: "",
-            //     subject: "",
-            //     text: ""
-            // })
        }, 10000);
        
     });
