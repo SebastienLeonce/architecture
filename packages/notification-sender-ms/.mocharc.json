@@ -1,0 +1,10 @@
+{
+    "spec": "test/**/*.spec.ts",
+    "timeout": "20000",
+    "parallel": true,
+    "node-option": [
+      "experimental-specifier-resolution=node",
+      "loader=./loader.js",
+      "no-warnings"
+    ]
+  }
