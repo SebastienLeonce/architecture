@@ -13,8 +13,10 @@ services:
       - --providers.docker.exposedbydefault=false
     labels:
       traefik.enable: true
-      traefik.http.routers.dash.rule: Host(`localhost`)
+      traefik.http.routers.dash.rule: Host(`traefik.${DOMAIN}`)
       traefik.http.services.dash.loadbalancer.server.port: 8080
+      traefik.http.middlewares.admin-auth.basicauth.users: ${ADMIN_USER}:${HASHED_PASSWORD}
+      traefik.http.routers.dash.middlewares: admin-auth
     deploy:
       resources:
         limits:

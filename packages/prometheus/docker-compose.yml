@@ -9,9 +9,8 @@ services:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     labels:
       traefik.enable: true
-      traefik.http.routers.prometheus.rule: PathPrefix(`/prometheus`)
-      traefik.http.middlewares.prometheus.stripprefix.prefixes: /prometheus
-      traefik.http.routers.prometheus.middlewares: prometheus@docker
+      traefik.http.routers.prometheus.rule: Host(`prometheus.${DOMAIN}`)
+      traefik.http.routers.prometheus.middlewares: admin-auth
     networks:
       - local
     restart: always

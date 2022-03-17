@@ -20,8 +20,9 @@ yarn dev
 yarn prod
 ```
 
-- grafana : [http://localhost/grafana](http://localhost/grafana)
-- prometheus : [http://localhost/prometheus/graph](http://localhost/prometheus/graph)
-- api docs : [http://localhost/blog/docs/](http://localhost/blog/docs/)
-- cadvisor : [http://localhost/cadvisor/containers/](http://localhost/cadvisor/containers/)
-- traefik : [http://localhost](http://localhost)
+- grafana : [http://grafana.localhost](http://grafana.localhost)
+- prometheus : [http://prometheus.localhost](http://prometheus.localhost)
+- api docs : [http://api.localhost](http://api.localhost)
+- cadvisor : [http://cadvisor.localhost](http://cadvisor.localhost)
+- traefik : [http://traefik.localhost](http://traefik.localhost)
+- db-ui : [http://db-ui.localhost](http://db-ui.localhost)
