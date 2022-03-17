@@ -1,20 +1,17 @@
-// import Nodemailer from 'nodemailer';
-// import { Email } from '../data/Email';
+import { MessageClient } from "cloudmailin"
+import { Email } from "../data/Email";
 
-// const transport = Nodemailer.createTransport({
-//     service: 'gmail',
-//     auth: {
-//         user: 'youremail@gmail.com',
-//         pass: 'yourpassword'
-//     }
-// })
+export async function sendMessage(email: Email) {
+    if (!process.env.MAIL_USERNAME || !process.env.MAIL_API_KEY)
+        throw new Error("Error with CloudMailin auth credentials");
 
-// export function sendEmail(email: Email){
-//     transport.sendMail(email, function(error, info){
-//         if (error) {
-//             console.log(error);
-//         } else {
-//             console.log('Email sent: ' + info.response);
-//         }
-//     });
-// }
+    const client = new MessageClient({ username: process.env.MAIL_USERNAME, apiKey: process.env.MAIL_API_KEY});
+    
+    await client.sendMessage({
+    to: email.to,
+    from: email.from,
+    plain: 'test message',
+    html:  email.text,
+    subject: email.subject
+    });
+}
