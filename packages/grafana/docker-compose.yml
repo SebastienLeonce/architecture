@@ -23,3 +23,10 @@ services:
     networks:
       - local
     restart: always
+  promtail:
+    image: grafana/promtail:latest
+    volumes:
+      - /var/log:/var/log
+    command: -config.file=/etc/promtail/docker-config.yaml
+    networks:
+      - local

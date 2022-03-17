@@ -51,18 +51,6 @@ services:
     extends:
       file: ./packages/rabbitmq/docker-compose.yml
       service: rabbitmq
-  # elasticsearch:
-  #   extends:
-  #     file: ./packages/elasticsearch/docker-compose.yml
-  #     service: elasticsearch
-  # kibana:
-  #   extends:
-  #     file: ./packages/kibana/docker-compose.yml
-  #     service: kibana
-  # loki:
-  #   extends:
-  #     file: ./packages/loki/docker-compose.yml
-  #     service: loki
   traefik:
     extends:
       file: ./packages/traefik/docker-compose.yml
@@ -72,6 +60,19 @@ services:
       - grafana
       - prometheus
       - cadvisor
+  loki:
+    extends:
+      file: ./packages/loki/docker-compose.yml
+      service: loki
+    depends_on:
+      - api
+  promtail:
+    extends:
+      file: ./packages/promtail/docker-compose.yml
+      service: promtail
+    depends_on:
+      - api
+
 networks:
   local:
     driver: bridge
