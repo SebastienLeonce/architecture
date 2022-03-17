@@ -12,7 +12,7 @@ export async function consume(queueName: string){
       channel.ack(msg)
 
       MailSenderService.sendMessage({
-        from: "no-reply@architecture.dev",
+        from: "no-reply@architecture.sleonce.dev",
         to: "pro.alexisdacosta@gmail.com",
         subject: "TESTS",
         text: msg.content.toString()
