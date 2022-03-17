@@ -1,11 +1,9 @@
-// const sonarqubeScanner =  require('sonarqube-scanner');
 import sonarqubeScanner from 'sonarqube-scanner';
 import dotenv from 'dotenv'
 
 dotenv.config({ path: '../../config/.env.dev' });
 
-let domain = process.env.DOMAIN
-console.log(domain)
+const domain = process.env.DOMAIN
 
 sonarqubeScanner(
     {
