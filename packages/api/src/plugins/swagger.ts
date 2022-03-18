@@ -16,6 +16,7 @@ const doc = {
         },
     },
     host: `api.${process.env.DOMAIN}/api`,
+    schemes: ['https']
 };
 
 const outputFile = "/null";
