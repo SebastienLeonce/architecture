@@ -26,3 +26,8 @@ yarn prod
 - cadvisor : [http://cadvisor.localhost](http://cadvisor.localhost)
 - traefik : [http://traefik.localhost](http://traefik.localhost)
 - db-ui : [http://db-ui.localhost](http://db-ui.localhost)
+
+# HTTPS
+
+- sudo snap install --classic certbot
+- sudo certbot certonly -d *.architecture.sleonce.dev --manual

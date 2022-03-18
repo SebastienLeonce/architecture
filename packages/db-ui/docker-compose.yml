@@ -6,8 +6,17 @@ services:
     image: sleonce/db-ui
     labels:
       traefik.enable: true
-      traefik.http.routers.db-ui.rule: Host(`db-ui.${DOMAIN}`)
-      traefik.http.routers.db-ui.middlewares: admin-auth
+      
+      traefik.http.routers.db-ui-http.rule: Host(`db-ui.${DOMAIN}`)
+      traefik.http.routers.db-ui-http.entrypoints: http
+      traefik.http.routers.db-ui-http.middlewares: https-redirect
+
+      traefik.http.routers.db-ui-https.rule: Host(`db-ui.${DOMAIN}`)
+      traefik.http.routers.db-ui-https.entrypoints: https
+      traefik.http.routers.db-ui-https.tls: true
+
+      traefik.http.routers.db-ui-https.tls.certresolver: le
+      traefik.http.routers.db-ui-https.middlewares: admin-auth
     restart: always
     ports:
       - "4231:4321"
