@@ -13,8 +13,17 @@ services:
       - /dev/kmsg:/dev/kmsg
     labels:
       traefik.enable: true
-      traefik.http.routers.cadvisor.rule: Host(`cadvisor.${DOMAIN}`)
-      traefik.http.routers.cadvisor.middlewares: admin-auth
+      
+      traefik.http.routers.cadvisor-http.rule: Host(`cadvisor.${DOMAIN}`)
+      traefik.http.routers.cadvisor-http.entrypoints: http
+      traefik.http.routers.cadvisor-http.middlewares: https-redirect
+
+      traefik.http.routers.cadvisor-https.rule: Host(`cadvisor.${DOMAIN}`)
+      traefik.http.routers.cadvisor-https.entrypoints: https
+      traefik.http.routers.cadvisor-https.tls: true
+
+      traefik.http.routers.cadvisor-https.tls.certresolver: le
+      traefik.http.routers.cadvisor-https.middlewares: admin-auth
     networks:
       - local
     ports:

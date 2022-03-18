@@ -81,6 +81,7 @@ networks:
 
 volumes:
   grafana-data:
+  traefik-public-certificates:
   mongo-data:
     driver: local
   data:

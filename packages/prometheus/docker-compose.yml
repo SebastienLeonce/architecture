@@ -9,8 +9,17 @@ services:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     labels:
       traefik.enable: true
-      traefik.http.routers.prometheus.rule: Host(`prometheus.${DOMAIN}`)
-      traefik.http.routers.prometheus.middlewares: admin-auth
+      
+      traefik.http.routers.prometheus-http.rule: Host(`prometheus.${DOMAIN}`)
+      traefik.http.routers.prometheus-http.entrypoints: http
+      traefik.http.routers.prometheus-http.middlewares: https-redirect
+
+      traefik.http.routers.prometheus-https.rule: Host(`prometheus.${DOMAIN}`)
+      traefik.http.routers.prometheus-https.entrypoints: https
+      traefik.http.routers.prometheus-https.tls: true
+
+      traefik.http.routers.prometheus-https.tls.certresolver: le
+      traefik.http.routers.prometheus-https.middlewares: admin-auth
     networks:
       - local
     restart: always
