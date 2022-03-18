@@ -1,6 +1,6 @@
 # architecture
 
-[![Node.js CI](https://github.com/SebastienLeonce/architecture/actions/workflows/node.js.yml/badge.svg)](https://github.com/SebastienLeonce/architecture/actions/workflows/node.js.yml)
+[![Docker CI/CD](https://github.com/SebastienLeonce/architecture/actions/workflows/docker_ci_cd.yml/badge.svg)](https://github.com/SebastienLeonce/architecture/actions/workflows/docker_ci_cd.yml)
 
 ## test
 
