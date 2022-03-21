@@ -7,3 +7,4 @@ coverage
 !.yarn/plugins
 */**/swagger-output.json
 .scannerwork
+.DS_Store
