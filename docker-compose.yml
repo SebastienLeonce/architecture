@@ -6,6 +6,12 @@ services:
       service: api
     depends_on:
       - db
+  blog:
+    extends:
+      file: ./packages/blog-mf/docker-compose.yml
+      service: blog
+    depends_on:
+      - db
   db:
     extends:
       file: ./packages/db/docker-compose.yml
