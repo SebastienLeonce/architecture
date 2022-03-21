@@ -12,9 +12,9 @@ COPY packages/blog-mf packages/blog-mf
 
 RUN yarn workspace @architecture/blog-mf build
 
-# FROM base as test
+FROM base as test
 
-# CMD ["yarn", "workspace", "@architecture/api", "test:watch"]
+CMD ["yarn", "workspace", "@architecture/blog-mf", "test:e2e"]
 
 FROM base as dev
 
