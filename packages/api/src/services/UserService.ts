@@ -4,6 +4,8 @@ import * as UserError from '@shared/error/UserError';
 import { UserResponse } from '@shared/user/UserResponse';
 import { Log } from '@utils/Logger';
 import bcryptjs from 'bcryptjs';
+import { NotificationService } from './NotificationService';
+import { Notification } from '@shared/notification/Notification';
 
 
 export async function getAllUser() : Promise<UserResponse[]> {
@@ -68,6 +70,14 @@ export async function createUser(username: string, password: string, mail: strin
         })
 
     const { password:string, __v, ...data} = user.toJSON() 
+
+    /*========== Example of notification use
+    const notification : Notification = new Notification("Welcome " + username, "New Follow", user);
+    NotificationService
+        .sendNotification(notification)
+        .then(() => console.log("Mail sent successfully"))
+        .catch((err: Error) => console.error(err))
+    */
 
     return data;
 }
