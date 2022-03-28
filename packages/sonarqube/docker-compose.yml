@@ -1,8 +1,24 @@
-version:  '3'
+version: "3"
 services:
-    sonarqube:
-        container_name:  sonarqube
-        image:  sonarqube:latest
-        ports:
-            -  "9000:9000"
-            -  "9092:9092"
+  sonarqube:
+    container_name: sonarqube
+    image: sonarqube:latest
+    ports:
+      - "9000:9000"
+      - "9092:9092"
+    labels:
+      traefik.enable: true
+
+      traefik.http.routers.sonarqube-http.rule: Host(`sonarqube.${DOMAIN}`)
+      traefik.http.routers.sonarqube-http.entrypoints: http
+      traefik.http.routers.sonarqube-http.middlewares: https-redirect
+
+      traefik.http.routers.sonarqube-https.rule: Host(`sonarqube.${DOMAIN}`)
+      traefik.http.routers.sonarqube-https.entrypoints: https
+      traefik.http.routers.sonarqube-https.tls: true
+
+      traefik.http.routers.sonarqube-https.tls.certresolver: le
+      traefik.http.routers.sonarqube-https.middlewares: admin-auth
+    networks:
+      - local
+    restart: always

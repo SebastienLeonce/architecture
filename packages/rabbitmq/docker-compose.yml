@@ -2,12 +2,24 @@ version: "3.2"
 services:
   rabbitmq:
     image: rabbitmq:3-management-alpine
-    container_name: 'rabbitmq'
+    container_name: "rabbitmq"
     ports:
-        - 5672:5672
-        - 15672:15672
-    volumes:
-        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
-        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+      - 5672:5672
+      - 15672:15672
+    labels:
+      traefik.enable: true
+
+      traefik.http.routers.rabbitmq-http.rule: Host(`rabbitmq.${DOMAIN}`)
+      traefik.http.routers.rabbitmq-http.entrypoints: http
+      traefik.http.routers.rabbitmq-http.middlewares: https-redirect
+
+      traefik.http.routers.rabbitmq-https.rule: Host(`rabbitmq.${DOMAIN}`)
+      traefik.http.routers.rabbitmq-https.entrypoints: https
+      traefik.http.routers.rabbitmq-https.tls: true
+
+      traefik.http.routers.rabbitmq-https.tls.certresolver: le
+
+      traefik.http.services.rabbitmq-architecture.loadbalancer.server.port: 15672
     networks:
-        - local
+      - local
+    restart: always
