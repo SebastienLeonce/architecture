@@ -7,19 +7,18 @@ defineProps<{
 <template>
   <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
-    <h3>
-      You’ve successfully created a project with
-      <a target="_blank" href="https://vitejs.dev/">Vite</a> +
-      <a target="_blank" href="https://vuejs.org/">Vue 3</a>. What's next?
+    <h3 class="not-mobile">
+      Welcome to the Blog. Please enter your name and email address to register or log in.
     </h3>
   </div>
 </template>
 
 <style scoped>
 h1 {
-  font-weight: 500;
+  font-weight: 900;
   font-size: 2.6rem;
   top: -10px;
+
 }
 
 h3 {
@@ -35,6 +34,15 @@ h3 {
   .greetings h1,
   .greetings h3 {
     text-align: left;
+  }
+  .not-mobile {
+    display: block;
+  }
+}
+
+@media (max-width: 1024px) {
+  .not-mobile {
+    display: none;
   }
 }
 </style>

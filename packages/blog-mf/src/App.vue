@@ -5,13 +5,14 @@ import HelloWorld from '@/components/HelloWorld.vue'
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <HelloWorld msg="PolyBlog" />
 
       <nav>
-        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/login">Login</RouterLink>
+        <RouterLink to="/signin">Signin</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
     </div>
@@ -22,6 +23,7 @@ import HelloWorld from '@/components/HelloWorld.vue'
 
 <style>
 @import '@/assets/base.css';
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&family=Poppins:wght@300&display=swap');
 
 #app {
   max-width: 1280px;
@@ -29,6 +31,8 @@ import HelloWorld from '@/components/HelloWorld.vue'
   padding: 2rem;
 
   font-weight: normal;
+  font-family: 'Fira Sans', sans-serif !important;
+  /* font-family: 'Poppins', sans-serif; */
 }
 
 header {

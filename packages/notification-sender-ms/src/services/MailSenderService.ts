@@ -8,10 +8,10 @@ export async function sendMessage(email: Email) {
     const client = new MessageClient({ username: process.env.MAIL_USERNAME, apiKey: process.env.MAIL_API_KEY});
     
     await client.sendMessage({
-    to: email.to,
-    from: email.from,
-    plain: 'test message',
-    html:  email.text,
-    subject: email.subject
+        to: email.to,
+        from: email.from,
+        plain: 'test message',
+        html:  email.text,
+        subject: email.subject
     });
 }
