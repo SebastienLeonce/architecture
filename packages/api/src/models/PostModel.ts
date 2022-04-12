@@ -6,7 +6,7 @@ export interface Post {
     title: string, 
     content: string,
     date?: Date,
-    user: mongoose.Schema.Types.ObjectId | User
+    user: mongoose.Schema.Types.ObjectId | User | string
 }
 
 const schema = new Schema <Post> ({

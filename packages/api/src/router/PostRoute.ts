@@ -21,7 +21,7 @@ router.get('/:id', async (req, res) => {
     if (id.length != 24) return res.status(400).send(RequestError.INVALID_PARAMETER_ID_FORMAT_ERROR);
 
     PostService.getOnePost(id)
-               .then((post: Post) => res.status(200).send(post))
+               .then((post: Post | null) => res.status(200).send(post))
                .catch((err: Error) => res.status(err.status).send(err))
 })
 
