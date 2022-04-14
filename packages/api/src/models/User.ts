@@ -5,7 +5,9 @@ export interface User {
     username: string,
     password: string,
     mail: string,
-    admin?: boolean
+    admin?: boolean,
+    following: mongoose.Types.ObjectId[],
+    followers: mongoose.Types.ObjectId[] 
 }
 
 const schema = new Schema <User> ({
@@ -33,6 +35,26 @@ const schema = new Schema <User> ({
         required: true,
         description: "The user's password.",
         example: "JohnPassword"
+    }, 
+    following: {
+        ref: "User", 
+        type: [Schema.Types.ObjectId],
+        description: "The user's following users",
+        example: [
+            "5e9f8f8f8f8f8f8f8f8f8f8",
+            "5e9f8f8f8f8f8f8f8f8f8f8"
+        ],
+        required: true,
+    },
+    followers: {
+        ref: "User",
+        type: [Schema.Types.ObjectId],
+        description: "The user's followers",
+        example: [
+            "5e9f8f8f8f8f8f8f8f8f8f8",
+            "5e9f8f8f8f8f8f8f8f8f8f8"
+        ],
+        required: true,
     }
 });
 

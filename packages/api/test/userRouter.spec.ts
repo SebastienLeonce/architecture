@@ -6,6 +6,7 @@ import app from '../src/index'
 
 import { INVALID_PARAMETER_ID_FORMAT_ERROR } from '@shared/error/RequestError';
 import * as DatabaseError from "@shared/error/DatabaseError";
+import * as UserError from "@shared/error/UserError";
 import { UserModel } from '@models/User';
 
 describe('userRouter', () => {
@@ -31,7 +32,7 @@ describe('userRouter', () => {
 
     describe('GET /user', () => {
         it('Should Work', done => {
-            agent.
+           agent.
                 get('/api/user').
                 expect(200, done)/*.
                 expect([{
@@ -61,7 +62,9 @@ describe('userRouter', () => {
                 expect({
                     _id,
                     mail: user.mail,
-                    username: user.username
+                    username: user.username,
+                    following: [],
+                    followers: []
                 }, done)
         })
 
@@ -125,4 +128,52 @@ describe('userRouter', () => {
             stub.restore();
         })
     });
+
+    // Test the follow 
+    describe('POST /user/:id/follow', () => {
+        // it('Should Work', done => {
+        //     agent.
+        //         post(`/api/user/${_id}/follow`).
+        //         send({ following: user.username }).
+        //         expect(200).
+        //         expect({
+        //             message: 'User followed successfully'
+        //         }, done)
+        // })
+
+        // it('Should Not Work', async () => {
+        //     const stub = sinon.stub(UserModel, 'findOne').rejects('fds');
+        //     await agent.
+        //         post(`/api/user/${_id}/follow`).
+        //         send({ following: _id }).
+        //         expect(404).
+        //         expect(UserError.USER_NOT_FOLLOWING_ERROR)
+        //     stub.restore();
+        // })
+    }
+    );
+
+    // Test the unfollow
+    describe('POST /user/:id/follow', () => {
+        // it('Should Work', done => {
+        //     agent.
+        //         post(`/api/user/${_id}/unfollow`).
+        //         send({ following: user.username }).
+        //         expect(200).
+        //         expect({
+        //             message: 'User unfollowed successfully'
+        //         }, done)
+        // })
+
+        // it('Should Not Work', async () => {
+        //     const stub = sinon.stub(UserModel, 'findOne').rejects('fds');
+        //     await agent.
+        //         post(`/api/user/${_id}/unfollow`).
+        //         send({ following: _id }).
+        //         expect(500).
+        //         expect(DatabaseError.DB_UNAVAILABLE_ERROR)
+        //     stub.restore();
+        // })
+    }
+    );
 });
