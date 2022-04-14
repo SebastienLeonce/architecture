@@ -1,7 +1,7 @@
 import { Post, PostModel } from "@models/PostModel";
 import { Log } from "@utils/Logger";
 import * as DatabaseError from "@shared/error/DatabaseError";
-import * as PostError from "@shared/error/PostError";
+import * as PostError from "@shared/error/PostError"; 
 import { ObjectId } from "mongoose";
 
 export async function getAllPost(skip = 0, limit = 10) : Promise<Post[]>{
