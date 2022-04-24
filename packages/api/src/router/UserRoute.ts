@@ -30,6 +30,9 @@ router.put('/:id', async (req, res) => {
     if (id.length != 24) return res.status(400).send(RequestError.INVALID_PARAMETER_ID_FORMAT_ERROR);
     else if (!password)  return res.status(400).send(RequestError.BODY_PARAMETERS_UNDEFINED_ERROR);
     
+    // @ts-ignore
+    if (id != req.user.id ) return res.status(403).send(RequestError.PERMISSION_DENIED_ERROR);
+
     UserService.
         updateUserPassword(id, password).
         then((user: UserResponse) => res.status(200).send(user)).
@@ -39,6 +42,9 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     const { id } = req.params;
     if (id.length != 24) return res.status(400).send(RequestError.INVALID_PARAMETER_ID_FORMAT_ERROR);
+
+    // @ts-ignore
+    if (id != req.user.id ) return res.status(403).send(RequestError.PERMISSION_DENIED_ERROR);
 
     UserService.
         deleteUser(id).
@@ -62,6 +68,10 @@ router.post('/:id/follow', async (req, res) => {
     if (id.length != 24) return res.status(400).send(RequestError.INVALID_PARAMETER_ID_FORMAT_ERROR);
     const { following } = req.body;
     if (!following) return res.status(400).send(RequestError.BODY_PARAMETERS_UNDEFINED_ERROR);
+    if (following.length != 24) return res.status(400).send(RequestError.INVALID_PARAMETER_ID_FORMAT_ERROR);
+
+    // @ts-ignore
+    if (id != req.user.id ) return res.status(403).send(RequestError.PERMISSION_DENIED_ERROR);
 
     UserService.followUser(id, following)
                 .then(() => res.status(200).send({message: 'User followed successfully '}))
@@ -87,6 +97,10 @@ router.post('/:id/unfollow', async (req, res) => {
     if (id.length != 24) return res.status(400).send(RequestError.INVALID_PARAMETER_ID_FORMAT_ERROR);
     const { following } = req.body;
     if (!following) return res.status(400).send(RequestError.BODY_PARAMETERS_UNDEFINED_ERROR);
+    if (following.length != 24) return res.status(400).send(RequestError.INVALID_PARAMETER_ID_FORMAT_ERROR);
+
+    // @ts-ignore
+    if (id != req.user.id ) return res.status(403).send(RequestError.PERMISSION_DENIED_ERROR);
 
     UserService.unfollowUser(id, following)
                 .then(() => res.status(200).send({message: 'User unfollowed successfully '}))

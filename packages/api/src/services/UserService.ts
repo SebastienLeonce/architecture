@@ -212,18 +212,18 @@ export async function unfollowUser(id: string, userId: string){
                        throw DatabaseError.DB_UNAVAILABLE_ERROR
                    })
 
-    // Remove the user from the list of followers of the user to follow
-    const userToFollow = await getUserById(userId).catch((error: Error) => {throw error});
-    const followers = userToFollow.followers;
-    if (!followers) throw UserError.USER_NOT_FOUND_ERROR;
-    if (!followers.includes(userIdObject)) throw UserError.USER_NOT_FOLLOWING_ERROR;
-    const idObject = await getUserObjectID(id);
-    followers.splice(followers.indexOf(idObject), 1);
-    await UserModel.findByIdAndUpdate(userId, { followers: followers })
-                   .catch((err) => {
-                          Log.fatal(err.message);
-                          throw DatabaseError.DB_UNAVAILABLE_ERROR
-                      })
+    // // Remove the user from the list of followers of the user to follow
+    // const userToFollow = await getUserById(userId).catch((error: Error) => {throw error});
+    // const followers = userToFollow.followers;
+    // if (!followers) throw UserError.USER_NOT_FOUND_ERROR;
+    // if (!followers.includes(userIdObject)) throw UserError.USER_NOT_FOLLOWING_ERROR;
+    // const idObject = await getUserObjectID(id);
+    // followers.splice(followers.indexOf(idObject), 1);
+    // await UserModel.findByIdAndUpdate(userId, { followers: followers })
+    //                .catch((err) => {
+    //                       Log.fatal(err.message);
+    //                       throw DatabaseError.DB_UNAVAILABLE_ERROR
+    //                   })
 }
    
 
