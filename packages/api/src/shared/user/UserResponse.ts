@@ -5,5 +5,6 @@ export interface UserResponse {
     username: string;
     mail: string,
     following?: mongoose.Types.ObjectId[],
-    followers? : mongoose.Types.ObjectId[] 
+    followers? : mongoose.Types.ObjectId[],
+    admin?: boolean
 }
