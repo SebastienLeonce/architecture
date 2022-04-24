@@ -11,3 +11,15 @@ export const USER_NOT_FOUND_ERROR : Error = {
     lib: "User requested not found or not exist",
     status: 404
 }
+
+export const USER_ALREADY_FOLLOWING_ERROR : Error = {
+    error: "USER_ALREADY_FOLLOWING_ERROR",
+    lib: "You already following this user",
+    status: 404
+}
+
+export const USER_NOT_FOLLOWING_ERROR : Error = {
+    error: "USER_NOT_FOLLOWING_ERROR",
+    lib: "You are not following this user",
+    status: 404
+}

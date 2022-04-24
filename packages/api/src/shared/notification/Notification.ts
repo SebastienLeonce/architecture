@@ -1,4 +1,5 @@
 import { User } from "@models/User";
+import { UserResponse } from "@shared/user/UserResponse";
 
 /**
  * Sendable Interface Object
@@ -15,10 +16,10 @@ export interface ISendable {
 export abstract class Message implements ISendable {
     subject?: string;
     content: string;
-    to?: User;
-    from?: User;
+    to?: User | UserResponse;
+    from?: User | UserResponse;
 
-    constructor(subject: string, content: string, to: User, from?: User) {
+    constructor(subject: string, content: string, to: User | UserResponse, from?: User | UserResponse) {
         this.subject = subject;
         this.content = content;
         this.to = to;
@@ -39,7 +40,7 @@ export class Notification extends Message {
     readonly APP_SENDER: string = 'BLOG_API';
 
     //========== Constructors 
-    constructor(subject: string, content: string, to: User) {
+    constructor(subject: string, content: string, to: User | UserResponse) {
         super(subject, content, to);
     }
 

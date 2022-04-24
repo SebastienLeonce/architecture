@@ -12,6 +12,7 @@ services:
       - DOMAIN
       - MQ_URL
       - MQ_NOTIFICATION_QUEUE
+      - COOKIE_EXP
     ports:
       - 3000:3000
     container_name: api
