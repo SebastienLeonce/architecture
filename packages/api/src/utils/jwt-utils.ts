@@ -9,7 +9,7 @@ const errors = {
 
 // Constants
 const secret = (process.env.JWT_SECRET || randomString.generate(100)),
-    options = {expiresIn: process.env.COOKIE_EXP || 3600*24};
+    options = {expiresIn: process.env.COOKIE_EXP || 360000*24};
 
 
 // Types
@@ -23,7 +23,7 @@ export const cookieProps = Object.freeze({
         // httpOnly: true,
         signed: true,
         // path: (process.env.COOKIE_PATH || '/'),
-        maxAge: Number(process.env.COOKIE_EXP) || 3600*24,
+        maxAge: Number(process.env.COOKIE_EXP) || 360000*24,
         // domain: (process.env.COOKIE_DOMAIN ||'http://localhost:3000/'),
         // secure: false,
     },

@@ -49,6 +49,7 @@ export class NotificationService{
                                                                     NotificationService.QUEUE_NAME);
 
         //== Send notification to client
-        channel.sendToQueue(NotificationService.QUEUE_NAME, Buffer.from(MQMessage));
+        channel.sendToQueue(NotificationService.QUEUE_NAME, 
+                            Buffer.from(MQMessage));
     }
 }
