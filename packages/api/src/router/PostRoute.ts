@@ -29,6 +29,9 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     const { title, content, user }  = req.body; 
     if (!title || !content || !user) res.status(403).send(RequestError.BODY_PARAMETERS_UNDEFINED_ERROR)
+    
+    // @ts-ignore
+    if (user != req.user.id ) return res.status(403).send(RequestError.PERMISSION_DENIED_ERROR);
 
     PostService.createPost(title, content, user)
                .then((post: Post) => res.status(200).send(post))
@@ -42,6 +45,9 @@ router.put('/:id', async (req, res) => {
 
     const { title, content, user }  = req.body; 
     if (!title || !content || !user) res.status(403).send(RequestError.BODY_PARAMETERS_UNDEFINED_ERROR)
+
+    // @ts-ignore
+    if (user != req.user.id ) return res.status(403).send(RequestError.PERMISSION_DENIED_ERROR);
 
     PostService.updatePost(id, title, content, user)
                .then((post: Post) => res.status(200).send(post))

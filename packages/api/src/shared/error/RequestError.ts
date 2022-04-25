@@ -23,3 +23,9 @@ export const BODY_PARAMETERS_UNDEFINED_ERROR : Error = {
     lib: "The required body parameters are not present, null or undefined",
     status: 400
 }
+
+export const PERMISSION_DENIED_ERROR : Error = {
+    error: "PERMISSION_DENIED_ERROR",
+    lib: "You don't have permission to perform this action",
+    status: 403
+}
